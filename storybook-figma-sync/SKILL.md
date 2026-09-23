@@ -57,8 +57,10 @@ components in someone else's file.
 3. **Sync status.** Run `npm run sync-status -- --summary`. If a component you
    need shows ✗, say so before building with it.
 4. **Figma.** `figma_list_open_files`: the **target** file (the Playground)
-   must be connected; the library file is not needed. Screenshot the target
-   page first and place new work beside existing content, inside a Section.
+   must be connected; the library file is not needed. Place new work in a
+   Section below everything on the page (`section(name)` in the helpers), never
+   on top of someone's frames. A failed call can leave half-built layers:
+   remove them before retrying.
 5. Read `figma/GAPS.md` so a known difference is not reported as new.
 6. Load `figma-helpers.js` from this folder and paste it at the top of every
    `figma_execute` call.

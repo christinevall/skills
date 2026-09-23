@@ -77,3 +77,15 @@ async function text(str, style, color = 'color/content/default') {
 }
 function add(parent, child, fill = false) { parent.appendChild(child); if (fill) child.layoutSizingHorizontal = 'FILL'; return child; }
 // Build a whole screen in one call; on retry, remove the partial result first.
+
+// A new Section below everything already on the page, so nothing overlaps.
+// Replaces an earlier Section of the same name (a rerun), never anything else.
+function section(name, gap = 200) {
+  const old = figma.currentPage.children.find((n) => n.type === 'SECTION' && n.name === name);
+  if (old) old.remove();
+  const others = figma.currentPage.children;
+  const s = figma.createSection(); s.name = name;
+  s.x = others.length ? Math.min(...others.map((n) => n.x)) : 0;
+  s.y = others.length ? Math.max(...others.map((n) => n.y + n.height)) + gap : 0;
+  return s;
+}
