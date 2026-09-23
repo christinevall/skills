@@ -1,7 +1,7 @@
 # Storybook ⇄ Figma sync
 
 > **Needs:** the Storybook MCP · the Figma Console MCP · a Figma library whose
-> names match your code (the [`figma-mirror`](../figma-mirror) skill builds one)
+> names match your code (the [`figma-library-from-code`](../figma-library-from-code) skill builds one)
 
 **Screens can start anywhere. Components only come from the system.**
 
@@ -53,7 +53,7 @@ your Figma library and your code use the same ones:
 Then fill in the **Setup** table at the top of `SKILL.md` (a few paths and a
 branch name).
 
-**No matching library yet?** The [`figma-mirror`](../figma-mirror) skill builds one from your code.
+**No matching library yet?** The [`figma-library-from-code`](../figma-library-from-code) skill builds one from your code.
 
 **Try it with a ready-made system:** the
 [ds-base-ui template](https://github.com/christinevall/ds-base-ui) has all of

@@ -1,7 +1,7 @@
 /**
  * tokens/*.json → the Figma variables and styles that mirror them.
  *
- * The one place the token → Figma mapping lives. The figma-mirror skill uses
+ * The one place the token → Figma mapping lives. The figma-library-from-code skill uses
  * the payload to create or update the library, and scripts/validate.mjs
  * imports buildPayload() to check figma/manifest.json against it, so the two
  * cannot disagree about what Figma should contain.

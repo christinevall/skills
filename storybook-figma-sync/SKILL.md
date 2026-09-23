@@ -14,7 +14,7 @@ without guessing. Nothing is invented on the way: a missing component is
 built as a plain frame, marked, and listed as a suggestion.
 
 This skill **never changes the library or a component**. The library file is
-read only here; library changes go through `figma-mirror`, component changes
+read only here; library changes go through `figma-library-from-code`, component changes
 through a `feature/*` branch. Prototypes live on the `design` branch.
 
 ## Setup (once per design system)
@@ -41,7 +41,7 @@ no way back yet. See `docs/figma-only.md` in ds-base-ui.
 Figma property with its prop in code. `variant=primary` in Figma must be
 `variant="primary"` in code. If Figma says `Size=Medium` where code says
 `size="md"`, stop: this skill reads names, not intentions. Bring the Figma
-library in line with the code first (in ds-base-ui: the `figma-mirror` skill).
+library in line with the code first (in ds-base-ui: the `figma-library-from-code` skill).
 
 **Your own key map.** A duplicated library gets new keys. Run
 `snapshot.figma.js` in *your* library file (through the Figma Console MCP)
@@ -58,10 +58,17 @@ components in someone else's file.
    search the library to find one (that cost ~59k characters on 2026-09-23;
    the lookup costs a few lines). A missing key means the snapshot is stale:
    say so.
-3. **Sync status.** Run `npm run sync-status -- --summary`. If a component you
-   need shows ✗, say so before building with it.
-4. **Figma.** `figma_list_open_files`: the **target** file (the Playground)
-   must be connected; the library file is not needed. Place new work in a
+3. **Sync status, live if you can.** `figma_list_open_files` first. If the
+   library file is connected, run `snapshot.figma.js` in it and compare the
+   result with `figma/manifest.json`. If it is not connected, ask once: "Open
+   the library in Figma and run the Desktop Bridge plugin to check live, or
+   build from the snapshot of <date, time>?" and name what that snapshot's
+   status says. Then report: every ✗, what to do about it, and ask yes or no
+   (save the new snapshot? fix it? build anyway?). Change nothing, in Figma
+   or in the repo, before a yes. Never build without saying which of the two
+   (live or snapshot) it was.
+4. **Figma.** The **target** file (the Playground) must be connected; the
+   library file is only needed for the live check. Place new work in a
    Section below everything on the page (`section(name)` in the helpers), never
    on top of someone's frames. A failed call can leave half-built layers:
    remove them before retrying.

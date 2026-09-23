@@ -1,5 +1,5 @@
 /**
- * figma-mirror settings: everything that is specific to this design system.
+ * figma-library-from-code settings: everything that is specific to this design system.
  * The scripts next to this file read it; to mirror another system, change
  * this file, not the scripts. Paths are relative to the project root, which
  * is where the scripts are run from (npm run …).

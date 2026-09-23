@@ -1,4 +1,4 @@
-# Figma mirror
+# Figma library from code
 
 > **Needs:** the Figma Console MCP (or Figma's official MCP) · Figma's
 > `figma-use` and `figma-generate-library` skills · Node.js · a design system in
@@ -64,9 +64,9 @@ it well. For another system they are a strong starting point, not a switch:
 
 ```bash
 git clone https://github.com/christinevall/skills.git
-cp -R skills/figma-mirror your-project/.claude/skills/
+cp -R skills/figma-library-from-code your-project/.claude/skills/
 mkdir -p your-project/scripts/figma
-cp skills/figma-mirror/scripts/* your-project/scripts/figma/
+cp skills/figma-library-from-code/scripts/* your-project/scripts/figma/
 ```
 
 Then:

@@ -8,7 +8,7 @@
  *   node scripts/figma/icons.mjs            the payload, as JSON
  *   node scripts/figma/icons.mjs --summary  names, users, and where drawings drifted
  *
- * Two kinds, mirrored differently (see .claude/skills/figma-mirror):
+ * Two kinds, mirrored differently (see .claude/skills/figma-library-from-code):
  *   glyph    drawn by a component itself — a fixed nested instance, no prop
  *   example  drawn in a story and passed in as children — the default of an
  *            INSTANCE_SWAP property named children

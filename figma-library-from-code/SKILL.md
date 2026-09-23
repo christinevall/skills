@@ -1,9 +1,9 @@
 ---
-name: figma-mirror
+name: figma-library-from-code
 description: Build or update the Figma library so it mirrors the code — a component with its variants and properties, or the tokens behind variables and text styles. Use when asked to add, build, sync, update, mirror or "push" something to Figma, or after tokens or a component's CSS changed. Code is the source; Figma follows it.
 ---
 
-# Figma mirror — code → Figma
+# Figma library from code — code → Figma
 
 The Figma library mirrors the code. It is never the source. Every name,
 property and value in it comes from the token files, a component's `.tsx` and
