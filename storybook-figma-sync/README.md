@@ -1,0 +1,79 @@
+# Storybook ⇄ Figma sync
+
+**Screens can start anywhere. Components only come from the system.**
+
+A skill that moves a prototype between Storybook and Figma, in either
+direction, using only the components your design system really has:
+
+- **Storybook → Figma:** a story becomes Figma screens built from your
+  library's instances (nothing detached, nothing drawn), with the prototype
+  connections set and a notes frame beside it.
+- **Figma → Storybook:** a Figma screen comes back as a story, made from the
+  real components with the props you set in Figma. Layout frames are read as
+  layout words (Stack, Cluster, Split, Columns, Grid, Page), and anything it
+  would have to guess is shown to you first.
+
+Every run ends with the same four-part notes, in Figma and in Storybook:
+
+1. ✅ **Real library components** used
+2. 🟠 **Built by hand**, and why no component covers it
+3. 🔴 **Where Figma does not match Storybook**
+4. 💡 **Components worth suggesting** (not built)
+
+## What you need
+
+This is the important part. The skill reads **names**, so it only works when
+your Figma library and your code use the same ones:
+`variant=primary` in Figma must be `variant="primary"` in code.
+
+- A design system **in code**, documented in **Storybook** (ideally 10, with
+  the MCP addon)
+- A **Figma library that mirrors the code**: same component names, same
+  properties and values, tokens as variables, text styles
+- The **Figma Console MCP** and its *Desktop Bridge* plugin, so the AI can
+  read and build in Figma
+- A **key map**: run `snapshot.figma.js` (in this folder) once in your library
+  file and save the result as your Figma manifest. The keys are how the AI
+  places your components without searching the whole library. On a
+  four-screen prototype, the search alone was bigger than the build; with
+  keys, the whole job is estimated at about a third
+
+Then fill in the **Setup** table at the top of `SKILL.md` (a few paths and a
+branch name).
+
+**Try it with a ready-made system:** the
+[ds-base-ui template](https://github.com/christinevall/ds-base-ui) has all of
+this set up, with a Figma library generated from its code.
+
+## Install
+
+```bash
+git clone https://github.com/christinevall/skills.git
+cp -R skills/storybook-figma-sync your-project/.claude/skills/
+```
+
+Then ask your assistant: *"Put the booking flow story into Figma"* or
+*"Bring this Figma screen back to Storybook"*.
+
+## Files
+
+| File | Is |
+| --- | --- |
+| `SKILL.md` | The procedure the AI follows |
+| `figma-helpers.js` | Tested building blocks for the Figma side: placing instances by key, setting props, layout frames, text styles |
+| `snapshot.figma.js` | Makes the Figma manifest and key map from your library |
+
+## Learn the setup
+
+A design system where code and Figma match is the foundation this skill
+stands on. How to build one, with AI, is what I teach at
+[moonlearning.io](https://moonlearning.io). An article about this workflow is
+coming soon; release news via
+[moonlearning.io/newsletter](https://moonlearning.io/newsletter).
+
+## Credits
+
+The idea of native Figma annotations for behaviour Figma cannot show comes
+from [alima-max/prototype-to-figma-skill](https://github.com/alima-max/prototype-to-figma-skill).
+
+By [Christine Vallaure](https://moonlearning.io).
