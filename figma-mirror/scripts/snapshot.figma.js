@@ -32,6 +32,10 @@ for (const page of figma.root.children) {
       variants: isSet ? n.children.length : 1,
       defaultVariant: isSet ? (n.defaultVariant?.name ?? null) : null,
       source: (n.description.match(/src\/components\/[\w/]+?(?:\.stories)?\.tsx/) || [null])[0], // example icons cite their story
+      // The description box as written in Figma: what the component is for, and
+      // when to use it. Saved so an agent reads it here, cheaply, instead of
+      // listing the whole library.
+      description: n.description.trim() || null,
       props: Object.entries(n.componentPropertyDefinitions).map(([k, d]) => ({
         name: k.split('#')[0],
         type: d.type,

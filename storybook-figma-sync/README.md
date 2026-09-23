@@ -26,6 +26,8 @@ Every run ends with the same four-part notes, in Figma and in Storybook:
 3. 🔴 **Where Figma does not match Storybook**
 4. 💡 **Components worth suggesting** (not built)
 
+**Only have Figma, no Storybook yet?** Start with [FIGMA-ONLY.md](FIGMA-ONLY.md): what matters in your library, and how Claude makes the manifest.
+
 ## What you need
 
 This is the important part. The skill reads **names**, so it only works when
@@ -42,7 +44,8 @@ your Figma library and your code use the same ones:
   (`use_figma`) and should work too, but this skill has only been tested with
   the Figma Console MCP so far
 - A **key map**: run `snapshot.figma.js` (in this folder) once in your library
-  file and save the result as your Figma manifest. The keys are how the AI
+  file and save the result as your Figma manifest. It also saves each
+  component's **description**, so write *Use when / Don't use when* there. The keys are how the AI
   places your components without searching the whole library. On a
   four-screen prototype, the search alone was bigger than the build; with
   keys, the whole job is estimated at about a third

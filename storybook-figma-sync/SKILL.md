@@ -1,6 +1,6 @@
 ---
 name: storybook-figma-sync
-description: Move a prototype between Storybook and Figma in either direction, or design a new one in Figma from a brief, using only real components. Storybook → Figma and brief → Figma build screens from Figma library instances, with prototype connections and a notes overview; Figma → Storybook rebuilds a Figma screen as a story from the real components. Use when asked to design, build or prototype a screen in Figma, to put a prototype or story into Figma, to bring a Figma screen or change back to Storybook or code, or to "sync" a prototype. Needs the Storybook MCP, the Figma Console MCP and a Figma library whose names match the code. Not for changing the library itself.
+description: Move a prototype between Storybook and Figma in either direction, or design a new one in Figma from a brief, using only real components. Storybook → Figma and brief → Figma build screens from Figma library instances, with prototype connections and a notes overview; Figma → Storybook rebuilds a Figma screen as a story from the real components. Use when asked to design, build or prototype a screen in Figma, to put a prototype or story into Figma, to bring a Figma screen or change back to Storybook or code, or to "sync" a prototype. Needs the Figma Console MCP and a Figma manifest; the Storybook directions also need the Storybook MCP and a library whose names match the code. Brief → Figma works from Figma alone (docs/figma-only.md). Not for changing the library itself.
 ---
 
 # Storybook ⇄ Figma sync — prototypes from real components
@@ -25,13 +25,17 @@ already right; for another system, change them here and nowhere else.
 | Setting | In ds-base-ui | What it is |
 | --- | --- | --- |
 | MCP | Storybook MCP (`.mcp.json`); Figma Console MCP with its Desktop Bridge plugin | How the AI reads components in Storybook and builds in Figma. Figma's official MCP (`use_figma`) runs the same plugin code and should work too, but is not tested with this skill yet |
-| Figma manifest | `figma/manifest.json` | What the library contains, with `keys`. Made by `snapshot.figma.js` in this folder |
+| Figma manifest | `figma/manifest.json` | What the library contains: names, properties, **descriptions** and `keys`. Made by `snapshot.figma.js` in this folder |
 | Code manifest | Storybook MCP, or `storybook-static/manifests/components.json` | What exists in code, with props |
 | Layout words | `docs/layout.md` | Stack, Cluster, Split, Columns, Grid, Page, mapped to your CSS |
 | Known differences | `figma/GAPS.md` | Where Figma cannot match code on purpose |
 | Sync check | `npm run sync-status -- --summary` | Optional: are code and Figma in sync? |
 | Prototype branch | `design` | Where prototypes are written |
 | Target file | the Playground | The Figma file screens are built in (never the library) |
+
+**Figma only, no Storybook yet?** *A brief → Figma* works from the Figma
+manifest alone: the library is the truth, there is no check against code and
+no way back yet. See `docs/figma-only.md` in ds-base-ui.
 
 **First check: do the names match?** Pick three components and compare a
 Figma property with its prop in code. `variant=primary` in Figma must be
@@ -113,6 +117,10 @@ above; only steps 1–2 change.
      downward, as CLAUDE.md says;
    - the code manifest: pick components by what they are for, with their
      real props and defaults;
+   - the **descriptions in the Figma manifest** (`components[].description`,
+     the text of Figma's description box): what each component is for, and
+     its *Use when / Don't use when* if the team wrote one. When two
+     components could fit, this decides — not the name;
    - CLAUDE.md's rules: semantic tokens, whole text styles, wrap, don't
      rebuild.
    Neutral demo content: fictional names, `example.com` emails.
