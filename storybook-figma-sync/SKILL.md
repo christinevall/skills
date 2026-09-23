@@ -1,6 +1,6 @@
 ---
 name: storybook-figma-sync
-description: Move a prototype between Storybook and Figma in either direction, using only real components. Storybook → Figma builds screens from Figma library instances, with prototype connections and a notes overview; Figma → Storybook rebuilds a Figma screen as a story from the real components. Use when asked to put a prototype, story or screen into Figma, to bring a Figma screen or change back to Storybook or code, or to "sync" a prototype. Needs a Figma library whose names match the code. Not for changing the library itself.
+description: Move a prototype between Storybook and Figma in either direction, using only real components. Storybook → Figma builds screens from Figma library instances, with prototype connections and a notes overview; Figma → Storybook rebuilds a Figma screen as a story from the real components. Use when asked to put a prototype, story or screen into Figma, to bring a Figma screen or change back to Storybook or code, or to "sync" a prototype. Needs the Storybook MCP, the Figma Console MCP and a Figma library whose names match the code. Not for changing the library itself.
 ---
 
 # Storybook ⇄ Figma sync — prototypes from real components
@@ -24,6 +24,7 @@ already right; for another system, change them here and nowhere else.
 
 | Setting | In ds-base-ui | What it is |
 | --- | --- | --- |
+| MCP | Storybook MCP (`.mcp.json`); Figma Console MCP with its Desktop Bridge plugin | How the AI reads components in Storybook and builds in Figma. Figma's official MCP (`use_figma`) runs the same plugin code and should work too, but is not tested with this skill yet |
 | Figma manifest | `figma/manifest.json` | What the library contains, with `keys`. Made by `snapshot.figma.js` in this folder |
 | Code manifest | Storybook MCP, or `storybook-static/manifests/components.json` | What exists in code, with props |
 | Layout words | `docs/layout.md` | Stack, Cluster, Split, Columns, Grid, Page, mapped to your CSS |

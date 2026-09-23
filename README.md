@@ -10,8 +10,8 @@ it by name or just describe the job.
 
 | Skill | For |
 | --- | --- |
-| [`figma-mirror`](figma-mirror) | Build and update your Figma library from your code, so names, props and tokens match exactly |
-| [`storybook-figma-sync`](storybook-figma-sync) | Move a prototype between Storybook and Figma in either direction, built only from your real components |
+| [`figma-mirror`](figma-mirror) | Build and update your Figma library from your code, so names, props and tokens match exactly. **Needs:** the Figma Console MCP (or Figma's official MCP), Node.js |
+| [`storybook-figma-sync`](storybook-figma-sync) | Move a prototype between Storybook and Figma in either direction, built only from your real components. **Needs:** the Storybook MCP, the Figma Console MCP, and a Figma library whose names match your code |
 
 They work as a pair: `figma-mirror` keeps the library right, `storybook-figma-sync` builds screens from it.
 

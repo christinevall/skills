@@ -1,5 +1,9 @@
 # Figma mirror
 
+> **Needs:** the Figma Console MCP (or Figma's official MCP) · Figma's
+> `figma-use` and `figma-generate-library` skills · Node.js · a design system in
+> code with tokens
+
 **Code is the source. Figma follows it, exactly.**
 
 A skill that builds and updates a Figma library from your design system's
