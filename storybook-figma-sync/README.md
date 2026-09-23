@@ -11,6 +11,9 @@ direction, using only the components your design system really has:
 - **Storybook → Figma:** a story becomes Figma screens built from your
   library's instances (nothing detached, nothing drawn), with the prototype
   connections set and a notes frame beside it.
+- **A brief → Figma:** describe a screen or flow; the AI plans it from your
+  components and your code's page conventions (width, section spacing, which
+  text style for what), shows you the plan, then builds it.
 - **Figma → Storybook:** a Figma screen comes back as a story, made from the
   real components with the props you set in Figma. Layout frames are read as
   layout words (Stack, Cluster, Split, Columns, Grid, Page), and anything it
