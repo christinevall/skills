@@ -41,6 +41,8 @@ your Figma library and your code use the same ones:
 Then fill in the **Setup** table at the top of `SKILL.md` (a few paths and a
 branch name).
 
+**No matching library yet?** The [`figma-mirror`](../figma-mirror) skill builds one from your code.
+
 **Try it with a ready-made system:** the
 [ds-base-ui template](https://github.com/christinevall/ds-base-ui) has all of
 this set up, with a Figma library generated from its code.
@@ -70,6 +72,10 @@ stands on. How to build one, with AI, is what I teach at
 [moonlearning.io](https://moonlearning.io). An article about this workflow is
 coming soon; release news via
 [moonlearning.io/newsletter](https://moonlearning.io/newsletter).
+
+## License
+
+MIT, see [LICENSE](../LICENSE). Use it, change it, share it; keep the credit.
 
 ## Credits
 

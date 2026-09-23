@@ -10,7 +10,10 @@ it by name or just describe the job.
 
 | Skill | For |
 | --- | --- |
+| [`figma-mirror`](figma-mirror) | Build and update your Figma library from your code, so names, props and tokens match exactly |
 | [`storybook-figma-sync`](storybook-figma-sync) | Move a prototype between Storybook and Figma in either direction, built only from your real components |
+
+They work as a pair: `figma-mirror` keeps the library right, `storybook-figma-sync` builds screens from it.
 
 ## Learn the setup
 
@@ -18,3 +21,7 @@ These skills assume a design system where code and Figma match. How to set
 that up is what I teach at [moonlearning.io](https://moonlearning.io). An
 article about this workflow is coming soon; release news via
 [moonlearning.io/newsletter](https://moonlearning.io/newsletter).
+
+## License
+
+MIT, see [LICENSE](LICENSE). Use them, change them, share them; keep the credit.
