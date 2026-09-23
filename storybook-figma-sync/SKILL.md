@@ -120,9 +120,10 @@ above; only steps 1–2 change.
    `Page › Page header (heading-xl, body-md) › Columns · space/8 › Stack: Card
    (elevated), Button (primary)`.
    Say which pattern or anatomy rule each part follows. Anything the brief
-   needs that no component covers is a `GAP:` frame, named in the plan; a
-   spacing or style the anatomy does not cover is a question, not a guess.
-   Wait for a yes.
+   needs that no component covers is a `GAP:` frame, named in the plan.
+   **Do not wait for a yes: show the plan and build in the same turn.** The
+   designer corrects the result, not the plan. Where the anatomy has no rule,
+   pick the nearest token, build it, and list it under 🔴 as a question.
 3. Build, connect, annotate, verify and add the notes exactly as in
    *Storybook → Figma* steps 3–9. The notes start with "Source: a brief".
 4. Offer the way back: the screens can come into Storybook with
