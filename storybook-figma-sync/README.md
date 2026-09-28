@@ -74,7 +74,7 @@ Then ask your assistant: *"Put the booking flow story into Figma"* or
 | File | Is |
 | --- | --- |
 | `SKILL.md` | The procedure the AI follows |
-| `GAPS.template.md` | The shape of `figma/GAPS.md`: where Figma and code differ on purpose, what is left out, and what is open, each entry marked 🎨 Figma limit, 🔄 Figma behind, 🐞 code bug, ❓ not decided or 👁 not checked. The skill creates the file from it |
+| `GAPS.template.md` | The shape of `figma/GAPS.md`: where Figma and code differ on purpose, what is left out, and what is open, each entry marked 🎨 Figma limit, 📌 our choice, 🔄 Figma behind, 🐞 code bug, ❓ not decided or 👁 not checked. The skill creates the file from it |
 | `figma-helpers.js` | Tested building blocks for the Figma side: placing instances by key, setting props, layout frames, text styles |
 | `snapshot.figma.js` | Makes the Figma manifest and key map from your library |
 

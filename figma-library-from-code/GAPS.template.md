@@ -9,11 +9,12 @@ a mismatch, or cannot check something. Rule of thumb: if a designer opening
 the file would be surprised, it belongs here. Never fake a match in Figma to
 avoid an entry.
 
-**Five kinds:**
+**Six kinds**, and every entry carries its mark:
 
 | Mark | Kind | Where it goes | Until |
 | --- | --- | --- | --- |
 | 🎨 | **Figma limit**: Figma cannot express what the code does | *Different on purpose* | For good, or until Figma can |
+| 📌 | **Our choice**: Figma could show it, we decided not to (not in the contract: hover, motion, validation states, parts left out) | *Different on purpose* or *Left out on purpose* | The decision changes |
 | 🔄 | **Figma behind**: the code changed, the library has not caught up | *Open*, with the step that updates it | The library is updated |
 | 🐞 | **Code bug**: found while mirroring; the code is wrong, not Figma | *Open*, and fix it in the code | The fix is merged |
 | ❓ | **Not decided**: the code does not answer the question | *Open*, with the question | Someone decides; then *Different on purpose* or fixed |
@@ -21,28 +22,29 @@ avoid an entry.
 
 ## Different on purpose
 
-Permanent. Each row is a decision: what the code does, what Figma does
-instead, and why.
+Permanent, marked 🎨 or 📌 (a 🐞 or ❓ row points to its *Open* entry). Each
+row says what the code does, what Figma does instead, and why.
 
 ### Tokens
 
-| Code | Figma | Why |
-| --- | --- | --- |
-| | | |
+| | Code | Figma | Why |
+| --- | --- | --- | --- |
+| 🎨 | | | |
 
 ### Components
 
-| Component | Code | Figma | Why |
-| --- | --- | --- | --- |
-| | | | |
+| | Component | Code | Figma | Why |
+| --- | --- | --- | --- | --- |
+| 🎨 | | | | |
+| 📌 | | | | |
 
 ## Left out on purpose
 
 Code that has no Figma counterpart at all, and why.
 
-| Code | Why |
-| --- | --- |
-| | |
+| | Code | Why |
+| --- | --- | --- |
+| 📌 | | |
 
 ## Open
 

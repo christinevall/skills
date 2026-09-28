@@ -90,7 +90,7 @@ Then:
 | File | Is |
 | --- | --- |
 | `SKILL.md` | The contract and the procedure the AI follows |
-| `GAPS.template.md` | The shape of `figma/GAPS.md`: where Figma and code differ on purpose, what is left out, and what is open, each entry marked 🎨 Figma limit, 🔄 Figma behind, 🐞 code bug, ❓ not decided or 👁 not checked. The skill creates the file from it |
+| `GAPS.template.md` | The shape of `figma/GAPS.md`: where Figma and code differ on purpose, what is left out, and what is open, each entry marked 🎨 Figma limit, 📌 our choice, 🔄 Figma behind, 🐞 code bug, ❓ not decided or 👁 not checked. The skill creates the file from it |
 | `scripts/config.mjs` | Your system's settings |
 | `scripts/tokens-to-figma.mjs` | Tokens → the Figma variables and styles they should be |
 | `scripts/css-to-spec.mjs` | A component's CSS → the bindings and text styles it needs, and what to decide |

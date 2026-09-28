@@ -203,11 +203,12 @@ difference is not reported as new.
 Write an entry whenever you skip something, build something by hand, find a
 mismatch, or cannot check something: if a designer opening the library would
 be surprised, it belongs there. Never fake a match to avoid an entry. Every
-entry has one of five marks:
+entry has one of six marks, in tables too:
 
 | Mark | Kind | Goes in |
 | --- | --- | --- |
 | 🎨 | Figma limit: Figma cannot express what the code does | *Different on purpose*, a row with Code, Figma, Why |
+| 📌 | Our choice: Figma could show it, we decided not to (hover, motion, validation states) | *Different on purpose*, or *Left out on purpose* for a whole component |
 | 🔄 | Figma behind: the code changed, the library has not caught up | *Open*, with the step that updates it |
 | 🐞 | Code bug found while mirroring | *Open*; the fix is in the code, not in Figma |
 | ❓ | Not decided: the code does not answer the question | *Open*, with the question |

@@ -202,7 +202,8 @@ marked, in its *Open* section whenever a screen shows:
 - 👁 anything not checked (a width not compared, a screen not screenshotted),
   with what would check it.
 
-A 🎨 Figma limit that is here to stay goes in *Different on purpose* instead.
+A 🎨 Figma limit or 📌 choice that is here to stay goes in *Different on
+purpose* instead, with its mark.
 A `GAP:` frame belongs in the notes, not in the gaps file: it is a missing
 component, not a mismatch. Say in the reply which entries you added.
 
