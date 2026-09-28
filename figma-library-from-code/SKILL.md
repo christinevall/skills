@@ -29,7 +29,7 @@ already right; for another system, change them here and in `config.mjs`.
 | Figma manifest | `figma/manifest.json` | What the library contains, with the key map |
 | Code manifest | Storybook MCP, or `storybook-static/manifests/components.json` | Props, values and defaults in code |
 | Check | `npm run validate` (and `npm run sync-status`) | Compares the Figma manifest with the code |
-| Known differences | `figma/GAPS.md` | Where Figma cannot match the code, and why |
+| Gaps | `figma/GAPS.md` | Where Figma and code differ, and what is open or not checked |
 
 **What the scripts expect.** Tokens in DTCG JSON with a light and a dark file
 for the roles; CSS custom properties named `--<prefix>-<token path>`; one
@@ -190,8 +190,32 @@ sub-element into its own component (`Select.Item`, `Tabs.Tab`) and compose it.
 Stop and ask, rather than invent, when the code does not answer the question:
 no text style fits, a state cannot be classified, a value is computed at
 runtime with no representative default, or the CSS depends on something Figma
-cannot express. Record the question in `figma/GAPS.md`, skip that part, and
-carry on with the rest.
+cannot express. Record the question in `figma/GAPS.md` (❓), skip that part,
+and carry on with the rest.
+
+## The gaps file
+
+`figma/GAPS.md` is where "in sync" stops being a claim: anything not listed
+is expected to match. If it does not exist, create it from
+`GAPS.template.md` in this folder. Read it before you start, so a known
+difference is not reported as new.
+
+Write an entry whenever you skip something, build something by hand, find a
+mismatch, or cannot check something: if a designer opening the library would
+be surprised, it belongs there. Never fake a match to avoid an entry. Every
+entry has one of five marks:
+
+| Mark | Kind | Goes in |
+| --- | --- | --- |
+| 🎨 | Figma limit: Figma cannot express what the code does | *Different on purpose*, a row with Code, Figma, Why |
+| 🔄 | Figma behind: the code changed, the library has not caught up | *Open*, with the step that updates it |
+| 🐞 | Code bug found while mirroring | *Open*; the fix is in the code, not in Figma |
+| ❓ | Not decided: the code does not answer the question | *Open*, with the question |
+| 👁 | Not checked: done, not verified | *Open*, with what would check it |
+
+Code left out of Figma entirely goes in *Left out on purpose*. Open entries
+are dated and say what closes them; delete one when it is closed. End every
+run by saying in the reply which entries you added, changed or closed.
 
 ## Build order
 
@@ -235,5 +259,5 @@ not a thing you draw), **ContextMenu** (the same popup as `Menu`).
 | `scripts/figma/snapshot.figma.js` | Figma MCP | what the library contains, with the key map → `figma/manifest.json` |
 | `scripts/figma/audit.figma.js` | Figma MCP | every hand-set value in a component |
 
-Known gaps and their reasons live in `figma/GAPS.md`. A decision that changes
-how the mirror works goes in `docs/decisions.md`.
+Known gaps and their reasons live in `figma/GAPS.md` (see *The gaps file*). A
+decision that changes how the mirror works goes in `docs/decisions.md`.

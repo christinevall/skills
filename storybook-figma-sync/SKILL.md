@@ -28,7 +28,7 @@ already right; for another system, change them here and nowhere else.
 | Figma manifest | `figma/manifest.json` | What the library contains: names, properties, **descriptions** and `keys`. Made by `snapshot.figma.js` in this folder |
 | Code manifest | Storybook MCP, or `storybook-static/manifests/components.json` | What exists in code, with props |
 | Layout words | `docs/layout.md` | Stack, Cluster, Split, Columns, Grid, Page, mapped to your CSS |
-| Known differences | `figma/GAPS.md` | Where Figma cannot match code on purpose |
+| Gaps | `figma/GAPS.md` | Where Figma and code differ, and what is open or not checked |
 | Sync check | `npm run sync-status -- --summary` | Optional: are code and Figma in sync? |
 | Prototype branch | `design` | Where prototypes are written |
 | Target file | the Playground | The Figma file screens are built in (never the library) |
@@ -192,11 +192,19 @@ instance.").
 
 ## Write it down
 
-- A component that looks wrong or cannot do what a screen needs: an entry in
-  `figma/GAPS.md` → *Status, open points and uncertainties* (on the branch
-  where that section is), and in the notes.
-- Anything not checked (a width not compared, a screen not screenshotted):
-  say it in the notes and in the reply.
+The notes cover this screen; `figma/GAPS.md` covers the library, for good. If
+the file does not exist, create it from `GAPS.template.md` in this folder.
+Anything not listed there is expected to match, so write an entry, dated and
+marked, in its *Open* section whenever a screen shows:
+
+- 🐞 a component that looks wrong in code, or 🔄 Figma lagging behind the code;
+- ❓ a component that cannot do what the screen needs, with the question;
+- 👁 anything not checked (a width not compared, a screen not screenshotted),
+  with what would check it.
+
+A 🎨 Figma limit that is here to stay goes in *Different on purpose* instead.
+A `GAP:` frame belongs in the notes, not in the gaps file: it is a missing
+component, not a mismatch. Say in the reply which entries you added.
 
 ## Stop and ask
 

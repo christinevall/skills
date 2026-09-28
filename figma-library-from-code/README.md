@@ -27,7 +27,10 @@ screens from the library and brings them back into code.
   Figma manifest, with the **key map** that lets an AI place your components in
   any file; your check compares the manifest with the code.
 - **Honesty:** what Figma cannot express (hover states, runtime values,
-  sibling selectors) is written down in a gaps file instead of faked.
+  sibling selectors) is written down in a gaps file instead of faked, with
+  what is open or not checked yet. The shape of that file is in
+  `GAPS.template.md`.
+
 
 It also carries the lessons that are not in Figma's documentation, such as
 why an inner shadow blurs a frame's children or why a CSS shorthand gets
@@ -87,6 +90,7 @@ Then:
 | File | Is |
 | --- | --- |
 | `SKILL.md` | The contract and the procedure the AI follows |
+| `GAPS.template.md` | The shape of `figma/GAPS.md`: where Figma and code differ on purpose, what is left out, and what is open, each entry marked 🎨 Figma limit, 🔄 Figma behind, 🐞 code bug, ❓ not decided or 👁 not checked. The skill creates the file from it |
 | `scripts/config.mjs` | Your system's settings |
 | `scripts/tokens-to-figma.mjs` | Tokens → the Figma variables and styles they should be |
 | `scripts/css-to-spec.mjs` | A component's CSS → the bindings and text styles it needs, and what to decide |
