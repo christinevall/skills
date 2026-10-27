@@ -1,7 +1,7 @@
 /*
  * Storybook preview: what wraps every story.
  * - Loads the stylesheet once (tokens, fonts, base styles).
- * - Adds the three modes (Mobile, Tablet, Desktop) to the viewport menu.
+ * - Adds the three modes (default, md, lg) to the viewport menu.
  * - Turns accessibility problems into test failures (a11y: 'error').
  */
 import type { Decorator, Preview } from '@storybook/react-vite';
@@ -50,9 +50,9 @@ const preview: Preview = {
     // The three modes of the system, at the widths the audit measured.
     viewport: {
       options: {
-        mobile: { name: 'Mobile (375)', styles: { width: '375px', height: '812px' }, type: 'mobile' },
-        tablet: { name: 'Tablet (1024)', styles: { width: '1024px', height: '900px' }, type: 'tablet' },
-        desktop: { name: 'Desktop (1440)', styles: { width: '1440px', height: '900px' }, type: 'desktop' },
+        small: { name: '375 · default', styles: { width: '375px', height: '812px' }, type: 'mobile' },
+        md: { name: '1024 · md', styles: { width: '1024px', height: '900px' }, type: 'tablet' },
+        lg: { name: '1440 · lg', styles: { width: '1440px', height: '900px' }, type: 'desktop' },
       },
     },
     options: {

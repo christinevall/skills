@@ -16,15 +16,15 @@
   .ds-grid[data-align='stretch'] { align-items: stretch; }
 
   /*
-   * Spans per mode. The breakpoints match the Tablet and Desktop modes in
+   * Spans per mode. The breakpoints match the md and lg breakpoints in
    * tokens.json (50em = 800px, 80em = 1280px). CSS does not allow variables in
    * media queries, so these two numbers are written out; validate checks them.
    */
   .ds-col { min-inline-size: 0; grid-column: auto / span var(--_col-span); }
   @media (min-width: 50em) {
-    .ds-col { grid-column: var(--_col-start-tablet, auto) / span var(--_col-span-tablet); }
+    .ds-col { grid-column: var(--_col-start-md, auto) / span var(--_col-span-md); }
   }
   @media (min-width: 80em) {
-    .ds-col { grid-column: var(--_col-start-desktop, auto) / span var(--_col-span-desktop); }
+    .ds-col { grid-column: var(--_col-start-lg, auto) / span var(--_col-span-lg); }
   }
 }

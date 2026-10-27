@@ -5,8 +5,8 @@ import './Button.css';
 type Shared = {
   /** primary: the one main action in a view. secondary: outlined, for a second action in prototypes. @default 'primary' */
   variant?: 'primary' | 'secondary';
-  /** Stretch to the full width: always (true), or only on Mobile ('mobile'). @default false */
-  fullWidth?: boolean | 'mobile';
+  /** Stretch to the full width: always (true), or only below md ('until-md'). @default false */
+  fullWidth?: boolean | 'until-md';
   /** Shows a spinner, keeps the width, ignores clicks; screen readers hear "busy". @default false */
   loading?: boolean;
   /** The label: short, a verb where possible. */
@@ -28,7 +28,7 @@ export function Button(props: ButtonProps) {
   const shared = {
     className: cx('ds-button', className),
     'data-variant': variant,
-    'data-full-width': fullWidth === true ? 'always' : fullWidth === 'mobile' ? 'mobile' : undefined,
+    'data-full-width': fullWidth === true ? 'always' : fullWidth === 'until-md' ? 'until-md' : undefined,
     'data-loading': loading || undefined,
   };
   const content = (

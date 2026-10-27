@@ -34,9 +34,9 @@
   }
 
   .ds-button[data-full-width='always'] { inline-size: 100%; }
-  /* Mobile only: full width below the Tablet breakpoint (50em = 800px). */
+  /* Below md only: full width below the md breakpoint (50em = 800px). */
   @media not (min-width: 50em) {
-    .ds-button[data-full-width='mobile'] { inline-size: 100%; }
+    .ds-button[data-full-width='until-md'] { inline-size: 100%; }
   }
 
   .ds-button:disabled,

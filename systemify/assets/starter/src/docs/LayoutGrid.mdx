@@ -9,9 +9,9 @@ One grid, three modes. Demo values: replace them with the audit's.
 
 | Mode | From | Columns | Gutter | Page margin | Content |
 | --- | --- | --- | --- | --- | --- |
-| Mobile | 0 | 4 | 16px | 24px | fluid |
-| Tablet | 800px | 8 | 24px | 40px | fluid |
-| Desktop | 1280px | 12 | 32px | 56px | max 1168px (margins grow beyond) |
+| small screens | 0 | 4 | 16px | 24px | fluid |
+| md | 800px | 8 | 24px | 40px | fluid |
+| lg | 1280px | 12 | 32px | 56px | max 1168px (margins grow beyond) |
 
 The breakpoints come from the audit: the widths where the source layout changes.
 
@@ -19,14 +19,14 @@ The breakpoints come from the audit: the widths where the source layout changes.
 
 ```tsx
 <Grid>
-  <Col tablet={4} desktop={5}>image</Col>   {/* 5 of 12 on Desktop, 4 of 8 on Tablet, full on Mobile */}
-  <Col tablet={4} desktop={7}>text</Col>
+  <Col md={4} lg={5}>image</Col>   {/* 5 of 12 from lg, 4 of 8 from md, full by default */}
+  <Col md={4} lg={7}>text</Col>
 </Grid>
 ```
 
 Example layouts on the grid:
 
-| Pattern | Desktop | Tablet | Mobile |
+| Pattern | lg | md | small screens |
 | --- | --- | --- | --- |
 | Media + text | 5 + 7 | 4 + 4 | stacked, media first |
 | Two cards | 6 + 6 | 4 + 4 | stacked |

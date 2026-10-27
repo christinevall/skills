@@ -19,7 +19,7 @@ const meta = {
     <Section {...args} aria-labelledby="demo">
       <Stack gap="lg">
         <Heading level={2} id="demo">Recent work</Heading>
-        <Text>A band of the page. Padding: 40px on Mobile, 56px on Tablet, 80px on Desktop.</Text>
+        <Text>A band of the page. Padding: 40px by default, 56px from md, 80px from lg.</Text>
       </Stack>
     </Section>
   ),

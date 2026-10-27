@@ -14,7 +14,7 @@ export interface ContainerProps extends React.HTMLAttributes<HTMLDivElement> {
 
 /**
  * Holds content at the width of the layout grid: page margins of 24, 40 or
- * 56px (Mobile, Tablet, Desktop) and at most 1168px of content. On wider
+ * 56px (default, md, lg) and at most 1168px of content. On wider
  * screens the margins grow. Section already contains one.
  */
 export function Container({ size = 'content', as: Tag = 'div', className, ...props }: ContainerProps) {

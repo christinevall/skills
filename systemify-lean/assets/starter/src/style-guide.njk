@@ -32,7 +32,7 @@ permalink: /style-guide/
   {%- set name = t.key | replace("semantic.text.", "") %}
   <div class="flow" style="--flow-space: var(--fs-space-3xs)">
     <p class="voice-{{ name }}">The quick brown fox, {{ name }}</p>
-    <p class="voice-quiet text-muted">.voice-{{ name }} · {{ t.description }} · mobile {{ t.value.mobile.fontSize }} · tablet {{ t.value.tablet.fontSize }} · desktop {{ t.value.desktop.fontSize }}</p>
+    <p class="voice-quiet text-muted">.voice-{{ name }} · {{ t.description }} · default {{ t.value.base.fontSize }} · md {{ t.value.md.fontSize }} · lg {{ t.value.lg.fontSize }}</p>
   </div>
   {%- endif %}{% endfor %}
 
@@ -40,7 +40,7 @@ permalink: /style-guide/
   {%- for t in tokens %}{% if t.key.startsWith("semantic.space.") %}
   <div class="cluster">
     <div style="inline-size: var({{ t.cssVar }}); block-size: 1rem; background: var(--fs-color-action-primary-background)"></div>
-    <code>{{ t.key | replace("semantic.space.", "") }} · {{ t.value }}{% if t.responsive %} → {{ t.responsive.tablet }} → {{ t.responsive.desktop }}{% endif %}</code>
+    <code>{{ t.key | replace("semantic.space.", "") }} · {{ t.value }}{% if t.responsive %} → {{ t.responsive.md }} → {{ t.responsive.lg }}{% endif %}</code>
   </div>
   {%- endif %}{% endfor %}
 

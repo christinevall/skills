@@ -12,7 +12,7 @@ export interface GridProps extends React.HTMLAttributes<HTMLElement> {
 }
 
 /**
- * The layout grid: 4 columns on Mobile, 8 on Tablet, 12 on Desktop, with a
+ * The layout grid: 4 columns by default, 8 from md, 12 from lg, with a
  * 16, 24 or 32px gutter. Put Col inside and say how many columns each spans.
  */
 export function Grid({ rowGap = 'xl', align = 'start', as: Tag = 'div', className, ...props }: GridProps) {

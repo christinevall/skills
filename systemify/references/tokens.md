@@ -78,7 +78,7 @@ Only create a style that the audit found. Five to ten is normal for a small site
 The responsive part sits on the size and line-height tokens, so the text style follows:
 
 ```json
-"heading-lg": { "$value": "{primitive.font.size.28}", "$extensions": { "systemify": { "modes": { "tablet": "{primitive.font.size.36}", "desktop": "{primitive.font.size.48}" } } } }
+"heading-lg": { "$value": "{primitive.font.size.28}", "$extensions": { "systemify": { "modes": { "md": "{primitive.font.size.36}", "lg": "{primitive.font.size.48}" } } } }
 ```
 
 The build writes `--ac-text-heading-lg` as a `font` shorthand plus its parts, so CSS
@@ -86,8 +86,9 @@ uses `font: var(--ac-text-heading-lg); letter-spacing: var(--ac-text-heading-lg-
 
 ## Modes = breakpoints
 
-- Mobile is the base value. `tablet` and `desktop` live in `$extensions.systemify.modes`.
-- The breakpoints are tokens: `primitive.breakpoint.tablet` / `.desktop` (in `em`). The media queries are generated from them, never typed.
+- Mobile first: `$value` is the default (no media query). Values for larger screens live in `$extensions.systemify.modes` under the breakpoint names (`md`, `lg`). A mode without a value takes the one from the next smaller mode, like CSS does.
+- Name breakpoints like media queries, by size (`md`, `lg`, add `sm` or `xl` if needed), never after devices (`tablet`, `desktop`): devices change, sizes don't.
+- The breakpoints are tokens: `primitive.breakpoint.md` / `.lg` (in `em`). The build reads the mode names from them, smallest first, and generates the media queries; never type them.
 - Only tokens that change get modes: font sizes, line heights, page margins, gutters, section space. Colours do not.
 - No fluid type (`clamp()`) unless the source site uses it. Three fixed sizes per style are easier to read, test and talk about.
 - No dark mode unless the source has one. A colour mode would be a second axis (`[data-theme]`), not a breakpoint.

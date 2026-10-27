@@ -12,17 +12,19 @@
  *   1. Walk the file and collect every token (a node with a $value).
  *   2. Resolve aliases like {primitive.font.size.48}.
  *   3. Name it: drop the tier, join with "-", prefix "--<prefix>-".
- *   4. Write CSS: base values (Mobile) in :root, then a media query for
- *      Tablet and one for Desktop with only the variables that change.
+ *   4. Write CSS: default values in :root, then one media query per
+ *      breakpoint with only the variables that change.
  *      Text styles become one `font` shorthand plus their parts.
  *
  * Values: plain strings ("#0066cc", "1.5rem") or the DTCG 2025.10 objects
  * ({ colorSpace, components, hex } for colour, { value, unit } for dimension).
  * Both work; objects are what the stable spec asks for.
  *
- * Modes and breakpoints: a token with $extensions.systemify.modes { tablet, desktop }
- * changes per breakpoint. The breakpoints themselves are tokens
- * (primitive.breakpoint.*), so the media queries are generated, never typed.
+ * Modes and breakpoints, mobile first: a token's $value is the default (no
+ * media query). A token with $extensions.systemify.modes { md, lg } changes at
+ * those breakpoints. The breakpoints themselves are tokens
+ * (primitive.breakpoint.md, .lg, any names you like), so the mode names and the
+ * media queries come from them, smallest first, never typed by hand.
  */
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
@@ -39,7 +41,6 @@ const JSON_OUT = arg('json', 'src/tokens/tokens.resolved.json');
 const source = JSON.parse(readFileSync(TOKENS, 'utf8'));
 
 const PREFIX = source.$extensions?.systemify?.prefix ?? 'ds';
-const MODES = ['tablet', 'desktop'];
 
 // ---------------------------------------------------------------- 1. collect
 const tokens = new Map();
@@ -62,13 +63,24 @@ function walk(node, path, inheritedType) {
 }
 for (const tier of ['primitive', 'semantic', 'component']) if (source[tier]) walk(source[tier], [tier], undefined);
 
+// The modes are the breakpoint tokens, smallest first ("md", "lg"…). "base" is the default.
+const BASE = 'base';
+const emOf = (v) => (typeof v === 'object' && v ? v.value : parseFloat(v)) * (String(v?.unit ?? v).includes('px') ? 1 / 16 : 1);
+const MODES = [...tokens.values()]
+  .filter((t) => t.path[0] === 'primitive' && t.path[1] === 'breakpoint' && t.path.length === 3)
+  .sort((a, b) => emOf(a.value) - emOf(b.value))
+  .map((t) => t.path[2]);
+for (const [key, t] of tokens) {
+  for (const mode of Object.keys(t.modes)) if (!MODES.includes(mode)) throw new Error(`${key} has a mode "${mode}" but there is no primitive.breakpoint.${mode}`);
+}
+
 // ---------------------------------------------------------------- 2. resolve
 const ALIAS = /^\{([^}]+)\}$/;
 const isAlias = (v) => typeof v === 'string' && ALIAS.test(v);
 const target = (v) => v.match(ALIAS)[1];
 
 /** Follows an alias chain to the raw value, in a given mode. */
-function resolveValue(value, mode = 'mobile', seen = []) {
+function resolveValue(value, mode = BASE, seen = []) {
   if (isAlias(value)) {
     const key = target(value);
     if (seen.includes(key)) throw new Error(`Circular alias: ${[...seen, key].join(' -> ')}`);
@@ -82,7 +94,11 @@ function resolveValue(value, mode = 'mobile', seen = []) {
   return value;
 }
 /** A token's own value in a mode (falls back to the base value). */
-const valueIn = (t, mode) => (mode !== 'mobile' && t.modes[mode] !== undefined ? t.modes[mode] : t.value);
+const valueIn = (t, mode) => {
+  // A mode inherits from the nearest smaller mode that sets a value, like CSS media queries do.
+  for (const m of MODES.slice(0, MODES.indexOf(mode) + 1).reverse()) if (t.modes[m] !== undefined) return t.modes[m];
+  return t.value;
+};
 
 // ---------------------------------------------------------------- 3. name
 const cssName = (path) => `--${PREFIX}-${path.slice(1).join('-')}`;
@@ -113,7 +129,7 @@ const format = (type, v) => {
 const css = (type, v) => (isAlias(v) ? varOf(v) : format(type, v));
 
 const base = { primitive: [], semantic: [], component: [] };
-const perMode = { tablet: [], desktop: [] };
+const perMode = Object.fromEntries(MODES.map((m) => [m, []]));
 const resolved = [];
 
 const PART_TYPES = { fontFamily: 'fontFamily', fontWeight: 'fontWeight', fontStyle: 'string', lineHeight: 'number', fontSize: 'dimension', letterSpacing: 'dimension' };
@@ -135,7 +151,7 @@ for (const [key, t] of tokens) {
     base[t.tier].push(`${name}: ${style}var(${name}-font-weight) var(${name}-font-size)/var(${name}-line-height) var(${name}-font-family);`);
     resolved.push({
       key, cssVar: name, tier: t.tier, type: t.type, description: t.description, css: parts,
-      value: { mobile: resolveValue(t.value, 'mobile'), tablet: resolveValue(t.value, 'tablet'), desktop: resolveValue(t.value, 'desktop') },
+      value: Object.fromEntries([BASE, ...MODES].map((m) => [m, resolveValue(t.value, m)])),
     });
     continue;
   }
@@ -144,11 +160,11 @@ for (const [key, t] of tokens) {
   for (const mode of MODES) {
     if (t.modes[mode] !== undefined) perMode[mode].push(`${name}: ${css(t.type, t.modes[mode])};`);
   }
-  const modeValues = Object.fromEntries(['mobile', ...MODES].map((m) => [m, format(t.type, resolveValue(valueIn(t, m), m))]));
+  const modeValues = Object.fromEntries([BASE, ...MODES].map((m) => [m, format(t.type, resolveValue(valueIn(t, m), m))]));
   resolved.push({
     key, cssVar: name, tier: t.tier, type: t.type, description: t.description,
     alias: isAlias(t.value) ? target(t.value) : null,
-    value: modeValues.mobile,
+    value: modeValues[BASE],
     responsive: Object.keys(t.modes).length ? modeValues : null,
     modeAliases: Object.keys(t.modes).length ? Object.fromEntries(Object.entries(t.modes).map(([m, v]) => [m, isAlias(v) ? target(v) : null])) : null,
   });
@@ -161,8 +177,8 @@ const out = `/*
  * GENERATED by scripts/build-tokens.mjs from tokens/tokens.json.
  * Do not edit by hand: change tokens.json and run \`npm run tokens\`.
  *
- * Mobile values first. The two media queries below are the Tablet and
- * Desktop modes: they only redefine the variables that change. Every text
+ * Default values first (mobile first). Each media query below is one
+ * breakpoint mode: it only redefines the variables that change. Every text
  * style, the grid and the section spacing follow automatically.
  */
 @layer tokens {
@@ -175,7 +191,7 @@ ${[
   }
 
 ${MODES.filter((m) => bp(m) && perMode[m].length).map((m) => `
-  /* ---- Mode: ${m[0].toUpperCase() + m.slice(1)} (from ${bp(m)}) ---- */
+  /* ---- Breakpoint ${m}: from ${bp(m)} ---- */
   @media (min-width: ${bp(m)}) {
     :root {
 ${indent(perMode[m], 6)}

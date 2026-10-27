@@ -116,7 +116,7 @@ Read `references/tokens.md`.
   not use. Primitives named by value, semantics by purpose, component tokens only
   for values a component really owns.
 - Breakpoints as tokens; responsive values with `$extensions.systemify.modes`
-  (Mobile base, `tablet`, `desktop`).
+  (the default value first, then `md`, `lg`: named like media queries, never after devices).
 - Text styles: category-size-modifier (`display-lg`, `heading-lg|md|sm`,
   `body-lg|md|sm`, `body-md-strong`, `label-md`, `label-sm`). Only the ones found.
 - Grid: columns, gutter, margin, content width per mode (`semantic.layout.*`).

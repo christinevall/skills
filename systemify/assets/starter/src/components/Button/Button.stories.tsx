@@ -27,8 +27,8 @@ export const Playground: Story = {
 
 export const Secondary: Story = { args: { variant: 'secondary', children: 'Email instead' } };
 
-/** Full width on Mobile only. Switch the viewport to Mobile. */
-export const FullWidthOnMobile: Story = { args: { fullWidth: 'mobile' } };
+/** Full width by default only. Switch the viewport to small screens. */
+export const FullWidthBelowMd: Story = { args: { fullWidth: 'until-md' } };
 
 /** Spinner, same width, clicks ignored, "busy" for screen readers (and still named). */
 export const Loading: Story = {

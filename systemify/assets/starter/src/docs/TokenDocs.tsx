@@ -5,7 +5,7 @@
  */
 import tokens from '../tokens/tokens.resolved.json';
 
-type Modes = { mobile: string; tablet: string; desktop: string };
+type Modes = { base: string; md: string; lg: string };
 interface Token {
   key: string;
   cssVar: string;
@@ -61,7 +61,7 @@ function Table({ head, children }: { head: string[]; children: React.ReactNode }
 export function TextStyles() {
   const styles = all.filter((t) => t.type === 'typography');
   return (
-    <Table head={['Text style', 'Mobile', 'Tablet', 'Desktop', 'In code']}>
+    <Table head={['Text style', 'Default', 'md (800px+)', 'lg (1280px+)', 'In code']}>
       {styles.map((t) => {
         const v = t.value as Record<keyof Modes, Record<string, string | number>>;
         const fmt = (m: keyof Modes) => `${v[m].fontSize} / ${v[m].lineHeight} · ${v[m].letterSpacing}`;
@@ -73,9 +73,9 @@ export function TextStyles() {
               </span>
               <span style={{ color: 'var(--ds-color-text-muted)' }}>{t.description}</span>
             </td>
-            <td style={cell}>{fmt('mobile')}</td>
-            <td style={cell}>{fmt('tablet')}</td>
-            <td style={cell}>{fmt('desktop')}</td>
+            <td style={cell}>{fmt('base')}</td>
+            <td style={cell}>{fmt('md')}</td>
+            <td style={cell}>{fmt('lg')}</td>
             <td style={{ ...cell, ...mono }}>font: var({t.cssVar})</td>
           </tr>
         );
@@ -88,15 +88,15 @@ export function TextStyles() {
 export function ResponsiveTable({ prefix }: { prefix: string }) {
   const list = all.filter((t) => t.key.startsWith(prefix));
   return (
-    <Table head={['Token', 'Mobile', 'Tablet', 'Desktop', 'Use']}>
+    <Table head={['Token', 'Default', 'md (800px+)', 'lg (1280px+)', 'Use']}>
       {list.map((t) => {
-        const m = t.responsive ?? { mobile: String(t.value), tablet: String(t.value), desktop: String(t.value) };
+        const m = t.responsive ?? { base: String(t.value), md: String(t.value), lg: String(t.value) };
         return (
           <tr key={t.key}>
             <td style={{ ...cell, ...mono }}>{t.cssVar}</td>
-            <td style={cell}>{remValue(m.mobile)}</td>
-            <td style={cell}>{remValue(m.tablet)}</td>
-            <td style={cell}>{remValue(m.desktop)}</td>
+            <td style={cell}>{remValue(m.base)}</td>
+            <td style={cell}>{remValue(m.md)}</td>
+            <td style={cell}>{remValue(m.lg)}</td>
             <td style={cell}>{t.description}</td>
           </tr>
         );
@@ -157,7 +157,7 @@ export const tokenCounts = {
 export function TokenCounts() {
   return (
     <p>
-      <strong>{tokenCounts.total} tokens</strong>: {tokenCounts.primitive} primitive · {tokenCounts.semantic} semantic · {tokenCounts.component} component. {tokenCounts.textStyles} text styles. {tokenCounts.responsive} values change per breakpoint (Mobile, Tablet, Desktop).
+      <strong>{tokenCounts.total} tokens</strong>: {tokenCounts.primitive} primitive · {tokenCounts.semantic} semantic · {tokenCounts.component} component. {tokenCounts.textStyles} text styles. {tokenCounts.responsive} values change per breakpoint (default, md, lg).
     </p>
   );
 }

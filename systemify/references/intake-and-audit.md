@@ -18,15 +18,15 @@ dark mode, a newsletter block) instead of measuring. Don't repeat that.
 ### A picture (screenshot, photo of a sketch, a PDF page)
 
 No CSS to read, so everything is an estimate. Work like this:
-1. Find the scale. Ask for the real width of the design if it isn't obvious (a 1440 desktop
-   frame, a 390 phone). Divide every measurement by that factor.
+1. Find the scale. Ask for the real width of the design if it isn't obvious (a 1440-wide
+   frame, a 390-wide one). Divide every measurement by that factor.
 2. Measure in the image (zoom into regions): text heights, gaps, column edges, colours
    (sample flat areas, not anti-aliased edges).
 3. **Snap** every estimate to a sensible scale: type to a 2px/0.125rem step, space to a
    4px or 8px grid, colours to the fewest distinct values that read the same.
 4. Infer the grid from repeated left edges and gutters.
 5. Ask only what the picture can't show: the typeface (or "close match is fine"), other
-   breakpoints (default: design mobile and tablet from the rules, marked "derived"),
+   breakpoints (default: derive the other widths from the rules, marked "derived"),
    hover and interaction, real copy.
 6. Mark every value in the audit **estimated** or **derived**, never "measured". One
    picture of one width cannot prove a breakpoint rule: say so in GAPS.md.

@@ -86,6 +86,6 @@ The React + Storybook setup keeps two decisions on purpose:
   usually have exactly three sizes per style and modes are easy to read and test.
   Fluid tokens are the alternative; offer them when the source site is fluid.
 - **`Grid` + `Col` exist for prototyping**: an agent working through the Storybook MCP gets
-  explicit, typed spans ("5 of 12 on Desktop"). They stay thin (one class, custom properties),
+  explicit, typed spans ("5 of 12 from lg"). They stay thin (one class, custom properties),
   and the relationship rules above still apply inside every column: flow, measure, context.
   On the website, the same CSS works without the wrapper.

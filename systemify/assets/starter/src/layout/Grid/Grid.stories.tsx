@@ -4,10 +4,10 @@ import { Col } from './Col';
 import { Grid } from './Grid';
 
 /**
- * The layout grid of the system: 4 columns on Mobile, 8 on Tablet, 12 on
- * Desktop, gutters 16 / 24 / 32px, inside the page margins. Every page layout
+ * The layout grid of the system: 4 columns by default, 8 from md, 12 on
+ * lg, gutters 16 / 24 / 32px, inside the page margins. Every page layout
  * is Grid + Col: say how many columns each part spans per breakpoint. Use the viewport menu
- * (Mobile, Tablet, Desktop) to see it change.
+ * (default, md, lg) to see it change.
  */
 const meta = {
   title: 'Layout/Grid',
@@ -22,12 +22,12 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-/** All columns at once: 12 on Desktop, 8 on Tablet, 4 on Mobile. */
+/** All columns at once: 12 from lg, 8 from md, 4 by default. */
 export const Columns: Story = {
   render: (args) => (
     <Grid {...args} rowGap="xs">
       {Array.from({ length: 12 }, (_, i) => (
-        <Col key={i} span={1} tablet={1} desktop={1}>
+        <Col key={i} span={1} md={1} lg={1}>
           <Box>{i + 1}</Box>
         </Col>
       ))}
@@ -35,12 +35,12 @@ export const Columns: Story = {
   ),
 };
 
-/** Media + text: image 5 columns, text 7 on Desktop; 4 + 4 on Tablet; stacked on Mobile. */
+/** Media + text: image 5 columns, text 7 from lg; 4 + 4 from md; stacked by default. */
 export const FiveSeven: Story = {
   render: (args) => (
     <Grid {...args}>
-      <Col tablet={4} desktop={5}><Box tall>desktop 5 · tablet 4</Box></Col>
-      <Col tablet={4} desktop={7}><Box tall>desktop 7 · tablet 4</Box></Col>
+      <Col md={4} lg={5}><Box tall>lg 5 · md 4</Box></Col>
+      <Col md={4} lg={7}><Box tall>lg 7 · md 4</Box></Col>
     </Grid>
   ),
 };
@@ -50,7 +50,7 @@ export const SixSix: Story = {
   render: (args) => (
     <Grid {...args}>
       {[1, 2, 3, 4].map((n) => (
-        <Col key={n} tablet={4} desktop={6}><Box tall>card {n}</Box></Col>
+        <Col key={n} md={4} lg={6}><Box tall>card {n}</Box></Col>
       ))}
     </Grid>
   ),
@@ -60,17 +60,17 @@ export const SixSix: Story = {
 export const ThreeNine: Story = {
   render: (args) => (
     <Grid {...args}>
-      <Col desktop={3}><Box>title · 3</Box></Col>
-      <Col desktop={9}><Box tall>content · 9</Box></Col>
+      <Col lg={3}><Box>title · 3</Box></Col>
+      <Col lg={9}><Box tall>content · 9</Box></Col>
     </Grid>
   ),
 };
 
-/** Start a column further in: here 6 columns from column 4 on Desktop. */
+/** Start a column further in: here 6 columns from column 4 from lg. */
 export const Offset: Story = {
   render: (args) => (
     <Grid {...args}>
-      <Col desktop={6} desktopStart={4}><Box>desktop 6, starts at 4</Box></Col>
+      <Col lg={6} lgStart={4}><Box>lg 6, starts at 4</Box></Col>
     </Grid>
   ),
 };

@@ -6,7 +6,7 @@ import { Heading } from './Heading';
  * A heading in one of the four heading text styles, named category-size:
  * display-lg, heading-lg, heading-md, heading-sm. Each is ONE text style whose
  * size changes per breakpoint (display-lg is 3 → 4.5 → 6rem), so there is no
- * "mobile heading". level is the meaning (one h1 per page), textStyle is the
+ * "small heading". level is the meaning (one h1 per page), textStyle is the
  * look. Switch the viewport to see the sizes change.
  */
 const meta = {

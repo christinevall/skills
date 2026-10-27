@@ -44,7 +44,7 @@ server at `/mcp`; `.mcp.json` points at it.
   `title: 'Prototypes/<Name>'`, `parameters: { layout: 'fullscreen' }`.
 - Import from the entry: `import { Button, Section } from '../../index'`. No other UI library, no Tailwind.
 - Structure: `Section` → `Grid` + `Col` (4 / 8 / 12 columns; give the span per
-  mode: `<Col tablet={4} desktop={6}>`) → `Stack` → components. One `Heading level={1}` per page.
+  mode: `<Col md={4} lg={6}>`) → `Stack` → components. One `Heading level={1}` per page.
 - **No new CSS, no `style` attribute.** `npm run validate` flags it.
 - Fictional names and `example.com` for invented content.
 - Finish with a list of gaps: what the system could not do and what you did instead.
