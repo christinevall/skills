@@ -13,8 +13,7 @@ export interface GridProps extends React.HTMLAttributes<HTMLElement> {
 
 /**
  * The layout grid: 4 columns on Mobile, 8 on Tablet, 12 on Desktop, with a
- * 16, 24 or 32px gutter. The same grid a designer sets up in Figma as a
- * layout grid per mode. Put Col inside and say how many columns each spans.
+ * 16, 24 or 32px gutter. Put Col inside and say how many columns each spans.
  */
 export function Grid({ rowGap = 'xl', align = 'start', as: Tag = 'div', className, ...props }: GridProps) {
   const listRole = Tag === 'ul' || Tag === 'ol' ? { role: 'list' } : {};

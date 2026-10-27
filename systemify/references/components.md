@@ -22,7 +22,7 @@ They don't start with "this is a card". They ask, for every repeated piece:
 5. **Whose job is the layout?** Width, columns, spacing between cards: the parent
    (Grid, Stack), never the card.
 
-A page built in a visual tool (Figma Sites, Framer, Webflow) usually has no components
+A page built in a visual site builder usually has no components
 underneath, or components per breakpoint frame. Three cards that look alike may be three
 hand-made copies that drifted. Treat small differences as drift until they repeat.
 
@@ -121,11 +121,11 @@ event, date, title, location. Two ways:
 
 If a preset needs its own CSS, it is either a variant of the base or a different component.
 
-**Worked example (CVDS, 2026-10):** the first build has five list entries (`TalkEntry`,
-`PodcastEntry`, `ArticleEntry`, `ServiceEntry`, `TopicEntry`), each a stack of text lines
-with 5–16 lines of CSS. By this method they are one `Entry` (kicker/title/meta/body/
-actions/status) plus at most two presets for the collections that come from JSON (talks,
-articles). Not changed in CVDS yet; logged in its GAPS.md as a candidate.
+**Worked example:** a personal site had five kinds of list entry (talks, podcasts,
+articles, services, talk topics), each built as its own component, each a stack of text
+lines with almost no CSS of its own. By this method they are one `Entry` (status, kicker,
+title, subtitle, meta, body, links) with a `size`, plus at most two presets for
+collections that come from JSON.
 
 ## 7. Lean skill: the same rules in Nunjucks
 
@@ -152,8 +152,3 @@ articles). Not changed in CVDS yet; logged in its GAPS.md as a candidate.
 4. **Designer read.** Open the docs page of each component: is the first story the common
    case? Are the props readable without code knowledge? Is the "when to use something
    else" line there?
-
-Sources for this method (read them, don't quote them blind): Nathan Curtis's writing on
-component API and naming (EightShapes), Brad Frost's Atomic Design and his "design
-system components" writing, the GOV.UK Design System's component pages (one job, when
-not to use it), Heydon Pickering's Inclusive Components (cards: one link per card).

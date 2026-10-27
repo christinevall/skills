@@ -1,4 +1,4 @@
-/* A small modern reset (after Andy Bell and Josh Comeau). */
+/* A small modern reset. */
 *, *::before, *::after { box-sizing: border-box; }
 * { margin: 0; }
 html { -webkit-text-size-adjust: none; text-size-adjust: none; }

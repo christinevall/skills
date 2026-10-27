@@ -50,9 +50,9 @@ screen?", a container query asks "how much room do I have?". Components ask the
 second; the page shell asks the first. And before either, try a layout that adapts by
 itself (Switcher, Sidebar, auto-fit grid): no query at all is the leanest.
 
-When the system uses breakpoint modes (Figma modes), container queries are a
-documented exception: write the component's threshold as a token, name the
-container, and log in GAPS.md that Figma cannot show it.
+When the system uses breakpoint modes, container queries are a documented exception:
+write the component's threshold as a token, name the container, and note it in
+`docs/decisions.md`.
 
 ## Architecture
 
@@ -107,7 +107,5 @@ container, and log in GAPS.md that Figma cannot show it.
 ## Learn more
 
 MDN (Baseline banners on every page) · web.dev/baseline · webstatus.dev · Every Layout ·
-CUBE CSS · Ahmad Shadeed (container queries, `:has()`, defensive CSS) · Miriam Suzanne /
-OddBird (cascade layers, container queries, `@scope`: she worked on those specs; oddbird.net) ·
-Josh Comeau (interactive grid and flexbox guides) · Una Kravets (container queries) ·
-Modern Web Guidance (above).
+CUBE CSS · Defensive CSS (defensivecss.dev) · the CSS Working Group drafts for cascade
+layers, container queries and `@scope` · Modern Web Guidance (above).

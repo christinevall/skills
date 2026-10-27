@@ -5,7 +5,7 @@
  *
  * storybook build writes storybook-static/manifests/components.json: every
  * component with its description, props, defaults and story code. That is
- * what the Storybook MCP serves to agents. A copy at packages/cvds/components.json
+ * what the Storybook MCP serves to agents. A copy at components.json
  * is the stable place a custom MCP (or any tool) can read it from later,
  * without running Storybook. It is generated: do not edit it by hand.
  */

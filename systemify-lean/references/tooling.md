@@ -55,12 +55,6 @@ Docs: https://storybook.js.org/docs/ai/mcp/overview. Storybook calls its AI feat
 | Terrazzo 2.x (`npx tz init`, `tz build`, `tz lint`) | Spec-pure 2025.10, resolver for light/dark in one build, built-in token lint |
 | Style Dictionary 5.7 | Biggest ecosystem, many output formats. No resolver: one build per mode |
 
-## Figma and DTCG (native import/export)
-
-Figma imports DTCG JSON per mode (drag into a collection, or Import mode) and exports per
-mode. Dimensions become px numbers (rem is lost), colour sRGB/HSL only, a fontFamily is a
-single name. Aliases across collections use `com.figma.aliasData`. UNVERIFIED: exported
-colour format and whether aliases survive export.
 
 ## Lean stacks (no React)
 

@@ -2,7 +2,7 @@ import { cx } from '../../utils/cx';
 import type { HeadingLevel } from '../../utils/types';
 import './Heading.css';
 
-/** The heading text styles. Same names as the tokens and the Figma text styles. */
+/** The heading text styles. Same names as the tokens. */
 export type HeadingTextStyle = 'display-lg' | 'heading-lg' | 'heading-md' | 'heading-sm';
 
 export interface HeadingProps extends React.HTMLAttributes<HTMLHeadingElement> {

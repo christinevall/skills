@@ -21,7 +21,7 @@
  * Both work; objects are what the stable spec asks for.
  *
  * Modes and breakpoints: a token with $extensions.systemify.modes { tablet, desktop }
- * (or the older $extensions.cvds.modes) changes per breakpoint. The breakpoints themselves are tokens
+ * changes per breakpoint. The breakpoints themselves are tokens
  * (primitive.breakpoint.*), so the media queries are generated, never typed.
  */
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
@@ -52,7 +52,7 @@ function walk(node, path, inheritedType) {
       type,
       value: node.$value,
       description: node.$description,
-      modes: node.$extensions?.systemify?.modes ?? node.$extensions?.cvds?.modes ?? {},
+      modes: node.$extensions?.systemify?.modes ?? {},
     });
     return;
   }

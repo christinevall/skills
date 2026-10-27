@@ -53,11 +53,11 @@ inside, returns focus on close (spec; test it per engine).
 - Covers the page (full screen or slide-in) → `<dialog>` + `showModal()` (the page behind becomes inert).
 - Dropdown that leaves the page visible → `popover` is fine.
 - Inside: `<nav aria-label="Main">` with a list of links; a visible close button that gets focus on open.
-- Toggle: a real `<button>` with a name ("Menu"). No `role="menu"` (https://adrianroselli.com/2023/05/be-careful-using-menu.html).
+- Toggle: a real `<button>` with a name ("Menu"). No `role="menu"`: that role is for application menus, not site navigation.
 
 ## Popover, anchor positioning, entry/exit animation
 
-- `popover` / `popovertarget`: Baseline 2025 (newly available since Jan 2025). Always non-modal; adds behaviour, not a role (https://hidde.blog/popover-accessibility/).
+- `popover` / `popovertarget`: Baseline 2025 (newly available since Jan 2025). Always non-modal; adds behaviour, not a role.
 - Does: implicit `aria-expanded` on the invoker, Esc and light dismiss for `popover="auto"`, focus back to the invoker, tab order continues into the popover. Does not: move focus in (add `autofocus`), close on focus out, change reading order (keep invoker and popover as DOM neighbours).
 - `popover="hint"`: not Baseline (no Safari). Fall back to `auto`/`manual`.
 - Anchor positioning (`position-area`, `anchor()`, `position-try-fallbacks`): Baseline newly available since Jan 2026. A popover opened by `popovertarget`/`commandfor` gets an implicit anchor. Visual only, no accessibility relation.
@@ -115,7 +115,7 @@ spec still moving → feature-detect, fall back to a live region.
 
 ## Testing
 
-- `@axe-core/playwright` per state (open dialog, open popover, error state), not just the default. Automated tools find roughly half the issues (Deque says ~57% by volume).
+- `@axe-core/playwright` per state (open dialog, open popover, error state), not just the default. Automated tools find roughly half the issues.
 - Playwright keyboard scripts: tab order, Esc closes, focus in and back, arrow keys, nothing focusable behind a modal, `aria-expanded`/`aria-selected` correct. `toMatchAriaSnapshot()` to lock the role tree.
 - Manual: VoiceOver + Safari, NVDA + Firefox/Chrome, 400% zoom, forced colours, reduced motion, touch target size.
 
@@ -123,8 +123,5 @@ spec still moving → feature-detect, fall back to a live region.
 
 - MDN (component pages with Baseline banners): https://developer.mozilla.org · Baseline: https://web.dev/baseline · https://webstatus.dev · https://caniuse.com
 - WAI-ARIA APG: https://www.w3.org/WAI/ARIA/apg/
-- Scott O'Hara: https://scottohara.me/blog/ · Adrian Roselli: https://adrianroselli.com · Hidde de Vries: https://hidde.blog
-- Sara Soueidan, Practical Accessibility (for designers and developers): https://practical-accessibility.today
-- Heydon Pickering, Inclusive Components: https://inclusive-components.design
-- GOV.UK Design System (form patterns): https://design-system.service.gov.uk
-- Open UI: https://open-ui.org · Chrome for Developers CSS/UI: https://developer.chrome.com/docs/css-ui (double-check its accessibility claims: https://adrianroselli.com/2024/07/dont-use-webdev-for-accessibility-info.html)
+- A public-sector design system's form patterns (error summary, validation): https://design-system.service.gov.uk
+- Open UI: https://open-ui.org · Chrome for Developers CSS/UI: https://developer.chrome.com/docs/css-ui (test its accessibility claims yourself)

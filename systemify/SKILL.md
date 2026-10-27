@@ -1,6 +1,6 @@
 ---
 name: systemify
-description: Act as a small design system team and turn an existing website, a Figma file, or a description into a best-practice, AI-ready design system in code - W3C DTCG tokens (primitive, semantic, component) with breakpoint modes that match Figma variable modes, React components with plain modern CSS (no Tailwind, no component library), Storybook 10 with docs, interaction and accessibility tests, the Storybook MCP so agents can prototype from the real components, plus audit, AGENTS.md, decisions and GAPS.md. Optionally rebuilds the real site in Astro from the same components. Use it whenever someone hands over a page, a URL, a Figma file or a brief and wants a design system, a component library, Storybook, tokens, a "systemified" version of their site, a setup for prototyping with AI or the Storybook MCP, or asks to "set this up properly". For a plain HTML/CSS site with a style-guide page and no React or Storybook, use `systemify-lean` instead.
+description: Act as a small design system team and turn an existing website, a design file, a picture, or a description into a best-practice, AI-ready design system in code - W3C DTCG tokens (primitive, semantic, component) with breakpoint modes, React components with plain modern CSS (no Tailwind, no component library), Storybook 10 with docs, interaction and accessibility tests, the Storybook MCP so agents can prototype from the real components, plus audit, AGENTS.md, decisions and GAPS.md. Optionally rebuilds the real site in Astro from the same components. Use it whenever someone hands over a page, a URL, a design file, a picture or a brief and wants a design system, a component library, Storybook, tokens, a "systemified" version of their site, a setup for prototyping with AI or the Storybook MCP, or asks to "set this up properly". For a plain HTML/CSS site with a style-guide page and no React or Storybook, use `systemify-lean` instead.
 ---
 
 # Systemify: a small design system team in one skill
@@ -27,8 +27,8 @@ token and component must trace back to the audit or to an explicit request.
 
 | File | Read before |
 | --- | --- |
-| `references/design-system-rules.md` | Anything: the 40 rules (Brad Frost, Nathan Curtis, TJ Pitre, Derek Wood, the course) and which check enforces each |
-| `references/intake-and-audit.md` | Step 1 (URL, Figma, picture, description) |
+| `references/design-system-rules.md` | Anything: the 40 rules and which check enforces each |
+| `references/intake-and-audit.md` | Step 1 (URL, design file, picture, description) |
 | `references/layout.md` | Step 1 (relations) and any layout CSS |
 | `references/tokens.md` | Step 2 |
 | `references/components.md` | Step 3: what becomes a component, nesting, the API, the usability check |
@@ -73,6 +73,21 @@ grep -rlE "(^|[^a-z])ds-" src .storybook | xargs sed -i '' -E 's/(^|[^a-z])ds-/\
  Pick a free Storybook port and set
 it in `package.json`, `.mcp.json`, AGENTS.md and the Prototyping page.
 
+**Storybook MCP** (follow https://storybook.js.org/docs/ai/mcp/overview; the starter
+already has steps 1–3, check them):
+1. Add-on installed: `@storybook/addon-mcp` in `package.json` and `.storybook/main.ts`
+   (in a project without it: `npx storybook add @storybook/addon-mcp`).
+2. Components manifest on: `features: { componentsManifest: true }` in `.storybook/main.ts`.
+3. Server registered for the agent: `.mcp.json` (Claude Code) with a descriptive name
+   (`storybook-<system>`) and the right port; `npx mcp-add --type http --url
+   "http://localhost:<port>/mcp" --scope project` does the same for other agents.
+4. Agent rules: the docs page has an official snippet for AGENTS.md / CLAUDE.md. Copy it
+   from the page into the project's rules file, with the server name replaced. The
+   starter's AGENTS.md has a summary of it; replace that with the official text.
+5. Verify: start Storybook, then ask the agent "List all documented components." It must
+   call `docs-list` and return every component. Write what you changed and anything that
+   did not work into GAPS.md.
+
 The starter is a tested, neutral version of a real system: 175 demo tokens, 5 layout
 pieces (Section, Container, Grid + Col, Stack, Cluster), 8 components (Heading, Text,
 Link, Button, Icon, Image, SkipLink, Spinner), Foundations docs generated from the
@@ -86,7 +101,7 @@ Read `references/intake-and-audit.md` and `references/layout.md`.
 - URL: measure at 375, 1024, 1440 with `assets/measure-site.js` in the browser,
   screenshot every page at every width, collect the copy word for word into
   `content/*.json`, download the images in use.
-- Figma: read only (Figma MCP or Console MCP). Never write to the file.
+- Design file: read only, through whatever connection to the design tool is available. Never write to it.
 - Description: record every value as "chosen, not measured".
 - Turn numbers into rules: breakpoints, colour roles, text styles (one per role, size
   per mode), the space scale from repeated relations, the grid per breakpoint, shape,
@@ -101,7 +116,7 @@ Read `references/tokens.md`.
   not use. Primitives named by value, semantics by purpose, component tokens only
   for values a component really owns.
 - Breakpoints as tokens; responsive values with `$extensions.systemify.modes`
-  (Mobile base, `tablet`, `desktop`). These are Figma variable modes one to one.
+  (Mobile base, `tablet`, `desktop`).
 - Text styles: category-size-modifier (`display-lg`, `heading-lg|md|sm`,
   `body-lg|md|sm`, `body-md-strong`, `label-md`, `label-sm`). Only the ones found.
 - Grid: columns, gutter, margin, content width per mode (`semantic.layout.*`).
@@ -193,8 +208,7 @@ docs page say when to use something else?
   "Before and after" page with screenshots if the source was a live site.
 - `docs/decisions.md`: stack, naming, every value chosen rather than measured, every
   library used and why.
-- `GAPS.md` "Status, open points and uncertainties": what Figma cannot express, what
-  was done by hand, what was not checked (screen readers, Firefox/WebKit, real
+- `GAPS.md` "Status, open points and uncertainties": what was done by hand, what was not checked (screen readers, Firefox/WebKit, real
   content lengths), what the source had wrong and the rebuild fixed. Uncertain =
   written as uncertain.
 - Report to the person in plain words, designers first: what was built (counts),
@@ -209,13 +223,6 @@ Pages import the same templates and the same `content/*.json`, render to static 
 with no `client:*` directives (zero JS), and validate content with a zod schema at
 build. Interactive bits are inline vanilla scripts or native HTML, not hydrated React.
 Measure the built site against the source like in step 1.
-
-## Optional: Figma
-
-Code is the source. A Figma library can mirror it later (variables per tier, modes =
-breakpoints, text styles bound to variables, components named by the code's props).
-Native DTCG import works per mode but turns rem into px. Never write to a library the
-person has not created for this.
 
 ## Rules that hold everywhere
 

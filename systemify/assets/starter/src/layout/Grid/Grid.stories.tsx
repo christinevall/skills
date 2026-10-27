@@ -6,8 +6,7 @@ import { Grid } from './Grid';
 /**
  * The layout grid of the system: 4 columns on Mobile, 8 on Tablet, 12 on
  * Desktop, gutters 16 / 24 / 32px, inside the page margins. Every page layout
- * is Grid + Col: say how many columns each part spans per breakpoint. In Figma
- * this is a layout grid per mode with the same numbers. Use the viewport menu
+ * is Grid + Col: say how many columns each part spans per breakpoint. Use the viewport menu
  * (Mobile, Tablet, Desktop) to see it change.
  */
 const meta = {

@@ -1,6 +1,6 @@
 /*
  * measure-site.js: paste the body of this function into the browser tool's
- * JavaScript runner on a live page (or a Figma Sites / Framer / Webflow
+ * JavaScript runner on a live page (or a site-builder
  * export), once per breakpoint width. It returns JSON for the audit.
  *
  *   await (MEASURE_SOURCE)()

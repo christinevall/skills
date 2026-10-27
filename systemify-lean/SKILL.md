@@ -1,6 +1,6 @@
 ---
 name: systemify-lean
-description: Turn an existing website, a Figma file, or a plain description into a small, well-documented site in plain HTML and CSS - tokens.json, CSS layout compositions, a few native-HTML components, and a /style-guide page built from the same code - with no JavaScript framework and no Storybook. The "super simple" setup in the spirit of Derek Wood (sheriffderek) and Every Layout/CUBE CSS. Use it whenever someone wants to clean up a small site (personal page, portfolio, small business, studio, Figma Sites/Framer/Webflow/Squarespace export) into maintainable code, asks for a lean or minimal design system, a style guide page, "just HTML and CSS", Eleventy or PHP includes, or says a full design system or React would be overkill. If they want React, Storybook or prototyping through the Storybook MCP, use the `systemify` skill instead.
+description: Turn an existing website, a design file, a picture, or a plain description into a small, well-documented site in plain HTML and CSS - tokens.json, CSS layout compositions, a few native-HTML components, and a /style-guide page built from the same code - with no JavaScript framework and no Storybook. The "super simple" setup: intrinsic layout primitives and CUBE CSS. Use it whenever someone wants to clean up a small site (personal page, portfolio, small business, studio, a site-builder export) into maintainable code, asks for a lean or minimal design system, a style guide page, "just HTML and CSS", Eleventy or PHP includes, or says a full design system or React would be overkill. If they want React, Storybook or prototyping through the Storybook MCP, use the `systemify` skill instead.
 ---
 
 # Systemify lean: a well-documented site in plain HTML and CSS
@@ -42,7 +42,7 @@ Astro. The CSS, tokens and checks are the same in every case.
 | File | Read before |
 | --- | --- |
 | `references/design-system-rules.md` | Anything: the 40 rules and which check enforces each |
-| `references/intake-and-audit.md` | Step 1 (URL, Figma, picture, description) |
+| `references/intake-and-audit.md` | Step 1 (URL, design file, picture, description) |
 | `references/layout.md` | Step 1 and any layout CSS |
 | `references/tokens.md` | Step 2 |
 | `references/css.md` | Step 3 and any CSS: which tool for which job |
@@ -59,13 +59,13 @@ Each step ends in something the person can look at. Show the audit before buildi
 unless they said to go straight through.
 
 ### 0 · Intake
-Find out what you got (URL, Figma file, description, existing code) and read
+Find out what you got (URL, design file, picture, description, existing code) and read
 `references/intake-and-audit.md`. Ask only what blocks you: which pages, whether the
 copy may change (default: no), the stack if it is not obvious. Pick the project folder
 and a 2–3 letter token prefix from the site name.
 
 ### 1 · Audit (the spec)
-Measure at 375, 1024, 1440 with `assets/measure-site.js` (URL), read the Figma file
+Measure at 375, 1024, 1440 with `assets/measure-site.js` (URL), read a design file
 read-only, or write down the description's values as "chosen". Save screenshots and the
 JSON in `docs/audit/`. Read `references/layout.md` and turn the `relations` and
 `measures` into **rules** (pair spacing, measure in ch, which primitive each region
@@ -77,9 +77,9 @@ scripts from `scripts/` into `<project>/scripts/`. Replace the demo `tokens/toke
 with the audit's values:
 - two tiers: `primitive` (palette, scale) and `semantic` (purpose). No component tier.
 - breakpoints as tokens, sizes that change get `$extensions.systemify.modes`.
-- text styles as **voices** (Derek Wood's type patterns): `loud`, `strong`, `firm`,
+- text styles as **voices** (purpose names): `loud`, `strong`, `firm`,
   `warm`, `calm`, `quiet` in the starter. Rename to what fits the site; keep only voices
-  the audit found. If the person prefers size names or plans a Figma library, use
+  the audit found. If the person prefers size names, use
   `display-lg / heading-md / body-md / label-md` instead and say why (see tokens.md).
 - rem for sizes, em for tracking and breakpoints, ch for measure, px only for 1px lines.
 
@@ -139,8 +139,7 @@ on the trigger). Anything not checked goes in GAPS.md.
 - `AGENTS.md`: the rules (starter has them; update the prefix and breakpoints) and a
   **design language** section with the principles from the audit. It points to
   `components.json`; it does not copy lists from it.
-- `GAPS.md`: what the code cannot do, what was done by hand, what nobody checked, what
-  Figma could not hold. Uncertain = written as uncertain.
+- `GAPS.md`: what the code cannot do, what was done by hand, what nobody checked. Uncertain = written as uncertain.
 - `docs/decisions.md`: stack, naming, anything chosen rather than measured.
 - Tell the person, in plain words: what was built, what differs from the source and
   why, what was not checked, how to run it.
@@ -154,7 +153,7 @@ on the trigger). Anything not checked goes in GAPS.md.
 - Fewer is better: 5–8 voices, 8–10 space steps, the colours actually used.
 - Plain words in comments, written for a designer reading the file.
 - Demo content anywhere students or the public see it: fictional names, `example.com`.
-- Never write to a Figma file. Read only.
+- Never change the source (site or design file). Read only.
 
 ## Later, if they outgrow it
 

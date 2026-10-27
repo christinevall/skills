@@ -11,7 +11,7 @@ Group Report; https://www.designtokens.org/tr/2025.10/format/).
 
 - `$value`, `$type`, `$description`, `$extensions`. A node with `$value` is a token, everything else is a group. `$type` is inherited from the group.
 - Aliases: `"{primitive.color.neutral.900}"`.
-- Spec-valid values are objects: colour `{ "colorSpace": "srgb", "components": [0,0.4,0.8], "hex": "#0066cc" }`, dimension `{ "value": 1.5, "unit": "rem" }`. Plain strings (`"#0066cc"`, `"1.5rem"`) are still what most tools and files use. The build script accepts both. Pick one per file; use objects if the file will go through Terrazzo or Figma's native import.
+- Spec-valid values are objects: colour `{ "colorSpace": "srgb", "components": [0,0.4,0.8], "hex": "#0066cc" }`, dimension `{ "value": 1.5, "unit": "rem" }`. Plain strings (`"#0066cc"`, `"1.5rem"`) are still what most tools and files use. The build script accepts both. Pick one per file; use objects if the file will go through a spec-strict tool such as Terrazzo.
 - The spec allows only `px` and `rem` for dimension units. This system also uses `em` (breakpoints, letter spacing) and that is a known deviation: write it in GAPS.md.
 - Settings for the build live at the root: `"$extensions": { "systemify": { "prefix": "ac" } }`.
 
@@ -50,13 +50,12 @@ One composite `typography` token per role. The size changes per mode; the name d
 | `label` | UI text: buttons, nav, form labels, meta | `label-md`, `label-sm` |
 
 Modifiers after the size: `-strong`, `-italic`, `-caps` (`body-md-strong`). This is how
-Nathan Curtis and most large systems (Material, Carbon, Polaris, SDS) name them, and it
-maps 1:1 to Figma text styles (`heading/lg`).
+most large design systems name them, and it is easy to say out loud ("use heading-md here").
 
 The element and the style stay separate: an `<h2>` can use `heading-md`; a card title
-can be an `<h3>` with `heading-sm`. Derek Wood's argument (CSS-Tricks, "On Type Patterns
-and Style Guides") is the same separation, with purpose or "voice" names instead of size
-names (`loud-voice`, `calm-voice`). Both work; the lean skill offers voice names.
+can be an `<h3>` with `heading-sm`. Purpose or "voice" names (`loud`, `calm`, `quiet`)
+are the other common scheme with the same separation. Both work; the lean skill offers
+voice names.
 
 Only create a style that the audit found. Five to ten is normal for a small site.
 
@@ -85,12 +84,12 @@ The responsive part sits on the size and line-height tokens, so the text style f
 The build writes `--ac-text-heading-lg` as a `font` shorthand plus its parts, so CSS
 uses `font: var(--ac-text-heading-lg); letter-spacing: var(--ac-text-heading-lg-letter-spacing);`.
 
-## Modes = breakpoints = Figma variable modes
+## Modes = breakpoints
 
 - Mobile is the base value. `tablet` and `desktop` live in `$extensions.systemify.modes`.
 - The breakpoints are tokens: `primitive.breakpoint.tablet` / `.desktop` (in `em`). The media queries are generated from them, never typed.
 - Only tokens that change get modes: font sizes, line heights, page margins, gutters, section space. Colours do not.
-- No fluid type (`clamp()`) unless the source site uses it. Modes map to Figma; `clamp()` does not.
+- No fluid type (`clamp()`) unless the source site uses it. Three fixed sizes per style are easier to read, test and talk about.
 - No dark mode unless the source has one. A colour mode would be a second axis (`[data-theme]`), not a breakpoint.
 
 ## Units
@@ -105,9 +104,6 @@ uses `font: var(--ac-text-heading-lg); letter-spacing: var(--ac-text-heading-lg-
 | Borders, outlines, hairlines | `px` | 1px should stay 1px |
 
 Font sizes are always `rem`. Docs show rem first, with "(N px at 16px)" as a hint only.
-
-Figma variables are px only. When the system is mirrored into Figma later, rem × 16
-becomes the Figma number. Log that in GAPS.md.
 
 ## Checks
 

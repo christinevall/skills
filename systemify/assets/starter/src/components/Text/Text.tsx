@@ -1,7 +1,7 @@
 import { cx } from '../../utils/cx';
 import './Text.css';
 
-/** The body and label text styles. Same names as the tokens and the Figma text styles. */
+/** The body and label text styles. Same names as the tokens. */
 export type TextStyle = 'body-lg' | 'body-md' | 'body-md-strong' | 'body-md-italic' | 'body-sm' | 'label-md';
 
 export interface TextProps extends React.HTMLAttributes<HTMLElement> {

@@ -21,7 +21,7 @@ export interface ColProps extends React.HTMLAttributes<HTMLElement> {
 /**
  * One column area of the layout grid. Say how many columns it spans per
  * breakpoint: <Col desktop={5}> is five of twelve on Desktop and full width
- * below. Exactly how a designer reads a Figma layout grid.
+ * below.
  */
 export function Col({ span = 4, tablet = 8, desktop = 12, tabletStart, desktopStart, as: Tag = 'div', className, style, ...props }: ColProps) {
   const vars = {

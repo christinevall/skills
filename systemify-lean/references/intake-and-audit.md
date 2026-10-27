@@ -1,16 +1,16 @@
 # Intake and audit
 
 The audit is the spec. Nothing gets built that the audit does not show, and every
-number in the audit has a source (measured, read from Figma, or given by the person).
-The first CVDS build failed because it invented things (stat cards, rounded corners,
+number in the audit has a source (measured, read from a design file, or given by the person).
+An earlier build of this method failed because it invented things (stat cards, rounded corners,
 dark mode, a newsletter block) instead of measuring. Don't repeat that.
 
 ## 1. What did I get?
 
 | Input | How to read it | Watch out for |
 | --- | --- | --- |
-| **Live URL** (any builder: Figma Sites, Framer, Webflow, WordPress, hand-written) | Built-in browser. Run `assets/measure-site.js` at 375, 1024 and 1440 wide (`resize_window`, then reload). Save each JSON to `docs/audit/measure-<width>.json`. Screenshot each page at each width into `docs/audit/`. | Builders keep hidden copies of other breakpoints (1px boxes), fade content in from opacity 0, and lazy-load images. The script handles these; check the numbers look sane. Copy can differ between breakpoints: pick the desktop copy and log the differences. |
-| **Figma file** | Read only. Figma MCP `get_design_context` / `get_variable_defs` / `get_screenshot`, or the Console MCP (`figma_get_variables`, `figma_get_text_styles`, `figma_get_styles`). Never write to the file. | Figma has no relationships (only fixed gaps), no `ch` measure, no real breakpoints (separate frames). Variables may be raw values with no tiers. Text styles may be per-frame copies. |
+| **Live URL** (any site builder, a CMS, or hand-written) | Built-in browser. Run `assets/measure-site.js` at 375, 1024 and 1440 wide (`resize_window`, then reload). Save each JSON to `docs/audit/measure-<width>.json`. Screenshot each page at each width into `docs/audit/`. | Builders keep hidden copies of other breakpoints (1px boxes), fade content in from opacity 0, and lazy-load images. The script handles these; check the numbers look sane. Copy can differ between breakpoints: pick the desktop copy and log the differences. |
+| **Design file** | Read only, through whatever connection to the design tool is available (variables, text styles, screenshots). Never write to it. | No relationships (only fixed gaps), no `ch` measure, no real breakpoints (separate frames). Values may be raw with no tiers. Text styles may be per-frame copies. |
 | **Picture** (screenshot, sketch, PDF) | Estimate from the image, then snap to a scale (see below). | Every value is "estimated". One width proves no breakpoint. |
 | **Description** | Ask for what is missing only if it blocks you: brand colour(s), typeface, pages, tone. Everything else gets a sensible default that is written down as a default. | Mark every value "chosen, not measured" in the audit so nobody later treats it as a design decision. |
 | **Existing code repo** | Read the CSS: collect custom properties, font sizes, colours, media queries (a grep is often enough). Run the site and measure it like a URL too. | The code may disagree with what renders. Trust what renders, log the difference. |
@@ -58,8 +58,8 @@ Also collect by hand:
 
 Work through these in order and write each into `docs/audit.md`:
 
-1. **Breakpoints.** Use the site's own (from `media`). If there are none (Figma Sites,
-   frames), pick the widths where the layout actually changes and write them in `em`.
+1. **Breakpoints.** Use the site's own (from `media`). If there are none (some site
+   builders), pick the widths where the layout actually changes and write them in `em`.
 2. **Colours.** Cluster the colours by use (text, surface, border, action, status).
    Near-duplicates (ΔE < ~2, or hex values one step apart) are drift: merge, log.
 3. **Text styles.** Group the measured styles by role. A role that has a different
@@ -84,7 +84,7 @@ Work through these in order and write each into `docs/audit.md`:
 
 ```markdown
 # Audit: <site>, <date>
-Source: <URL / Figma file / description>. Measured at 375 · 1024 · 1440.
+Source: <URL / design file / picture / description>. Measured at 375 · 1024 · 1440.
 
 ## Breakpoints        (table: name, from, why)
 ## Colour             (table: role, value, where seen, count)

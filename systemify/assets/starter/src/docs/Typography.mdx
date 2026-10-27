@@ -5,8 +5,8 @@ import { TextStyles, ResponsiveTable } from './TokenDocs';
 
 # Typography
 
-**One text style per role**, named **category-size-modifier** (Nathan Curtis; the same
-scheme as Material and Figma's own UI):
+**One text style per role**, named **category-size-modifier**, the scheme most large
+design systems use:
 
 | Category | Sizes | Modifiers |
 | --- | --- | --- |
@@ -16,13 +16,11 @@ scheme as Material and Figma's own UI):
 | `label` | md, sm | `-strong` (medium) |
 
 So `heading-lg` is the section title , `body-md-strong` the bold meta line.
-New sizes slot in without renaming (`heading-xl`, `body-xs`). In Figma the same names
-with slashes: `heading/lg`, `body/md-strong`.
+New sizes slot in without renaming (`heading-xl`, `body-xs`).
 
 `heading-lg` is one style, not "heading desktop" and "heading mobile": its size
-changes with the breakpoint inside the token. That is exactly a Figma text style whose
-size, line height and letter spacing are bound to variables with three modes
-(Mobile, Tablet, Desktop).
+changes with the breakpoint inside the token: size, line height and letter spacing
+each have three modes (Mobile, Tablet, Desktop).
 
 In code, a component applies the whole style in one line:
 
@@ -42,6 +40,6 @@ the reader's font settings. Switch the viewport to see the samples change.
 
 <TextStyles />
 
-## The variables behind the styles (Figma: the Responsive collection)
+## The variables behind the styles
 
 <ResponsiveTable prefix="semantic.typography." />

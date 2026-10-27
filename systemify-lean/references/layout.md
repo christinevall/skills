@@ -10,10 +10,8 @@ a visual tool records "24px here, 56px there"; the rule behind it is "a heading
 followed by a paragraph gets the small space" or "body text is at most 65
 characters wide". Rules survive new content; numbers don't.
 
-Sources: Jen Simmons, intrinsic web design (2018) · Heydon Pickering, the lobotomized
-owl `* + *` (A List Apart, 2014) · Every Layout (Pickering & Bell) · CUBE CSS (Andy Bell,
-2020) · Nathan Curtis, Space in Design Systems (2016: inset, stack, inline) · Derek Wood,
-On Type Patterns and Style Guides (CSS-Tricks, 2021).
+This is how experienced CSS developers work: intrinsic layout, the "owl" selector
+(`* + *`) for flow, layout primitives, CUBE CSS, and space split into inset, stack and inline.
 
 ## Vocabulary
 
@@ -72,21 +70,22 @@ Widely available: `:is()/:where()`, flex `gap`, logical properties, container si
 (Aug 2025), subgrid (Mar 2026), `:has()` (Jun 2026). Newly available: `@scope` (Mar 2026),
 container style queries (May 2026), `text-wrap: balance`. Limited: `text-wrap: pretty`.
 
-## What Figma cannot express (write these in GAPS.md as rules)
-
-Pair spacing ("h2 after p"), parent context, `ch` measure (only a fixed max width),
-`:has()`, container queries, subgrid, intrinsic switching (Switcher/Sidebar), margin collapse.
-
-## Learn more (all checked)
+## Learn more
 
 - Every Layout: https://every-layout.dev/ (Stack, Sidebar, Switcher free) · Axioms: https://every-layout.dev/rudiments/axioms/
-- CUBE CSS: https://cube.fyi/ · Piccalilli: https://piccalil.li/ · Build Excellent Websites: https://buildexcellentwebsit.es/
-- Andy Bell's flow utility: https://piccalil.li/blog/my-favourite-3-lines-of-css/
-- Jen Simmons, Layout Land: https://www.youtube.com/@LayoutLand
-- Josh Comeau: https://www.joshwcomeau.com/css/interactive-guide-to-grid/ · https://www.joshwcomeau.com/css/interactive-guide-to-flexbox/
-- Ahmad Shadeed: https://ishadeed.com/article/css-has-guide/ · https://ishadeed.com/article/learn-css-subgrid/ · https://defensivecss.dev/
-- Rachel Andrew: https://gridbyexample.com/
-- Utopia (fluid type and space): https://utopia.fyi/
-- Derek Wood: https://css-tricks.com/on-type-patterns-and-style-guides/
-- Nathan Curtis: https://medium.com/@nathanacurtis/space-in-design-systems-188bcbae0d62
-- web.dev Learn CSS: https://web.dev/learn/css
+- CUBE CSS: https://cube.fyi/ · Build Excellent Websites: https://buildexcellentwebsit.es/
+- The flow utility: https://piccalil.li/blog/my-favourite-3-lines-of-css/
+- Defensive CSS: https://defensivecss.dev/ · Grid by Example: https://gridbyexample.com/
+- web.dev Learn CSS: https://web.dev/learn/css · MDN CSS layout: https://developer.mozilla.org/docs/Learn_web_development/Core/CSS_layout
+
+## How the full systemify skill uses this
+
+The React + Storybook setup keeps two decisions on purpose:
+
+- **Breakpoints as modes with media queries** (not fluid `clamp()`), because the source sites
+  usually have exactly three sizes per style and modes are easy to read and test.
+  Fluid tokens are the alternative; offer them when the source site is fluid.
+- **`Grid` + `Col` exist for prototyping**: an agent working through the Storybook MCP gets
+  explicit, typed spans ("5 of 12 on Desktop"). They stay thin (one class, custom properties),
+  and the relationship rules above still apply inside every column: flow, measure, context.
+  On the website, the same CSS works without the wrapper.
