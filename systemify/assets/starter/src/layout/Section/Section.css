@@ -1,0 +1,15 @@
+@layer reset, tokens, base, layout, components, utilities;
+
+@layer layout {
+  .ds-section {
+    background: var(--ds-color-surface-default);
+    padding-block: var(--_pad);
+  }
+  .ds-section[data-spacing='lg'] { --_pad: var(--ds-space-section-lg); }
+  .ds-section[data-spacing='md'] { --_pad: var(--ds-space-section-md); }
+  .ds-section[data-spacing='header'] { --_pad: var(--ds-space-page-header); }
+  .ds-section[data-spacing='none'] { --_pad: 0; }
+
+  .ds-section[data-tone='subtle'] { background: var(--ds-color-surface-subtle); }
+  .ds-section[data-tone='inverse'] { background: var(--ds-color-surface-inverse); color: var(--ds-color-text-on-inverse); }
+}

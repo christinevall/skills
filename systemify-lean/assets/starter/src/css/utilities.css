@@ -1,0 +1,13 @@
+/* utilities.css: one job each. */
+.visually-hidden {
+  position: absolute; inline-size: 1px; block-size: 1px; overflow: hidden;
+  clip-path: inset(50%); white-space: nowrap;
+}
+.surface-subtle { background: var(--fs-color-surface-subtle); }
+.surface-inverse { background: var(--fs-color-surface-inverse); color: var(--fs-color-text-on-inverse); }
+.text-muted { color: var(--fs-color-text-muted); }
+/* Skip link: hidden until it gets keyboard focus. */
+.skip-link:not(:focus) {
+  position: absolute; inline-size: 1px; block-size: 1px; overflow: hidden;
+  clip-path: inset(50%); white-space: nowrap;
+}

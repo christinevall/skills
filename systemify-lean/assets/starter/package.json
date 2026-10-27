@@ -1,0 +1,14 @@
+{
+  "name": "site",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "tokens": "node scripts/build-tokens.mjs --css src/css/tokens.css --json src/_data/tokens.json",
+    "dev": "npm run tokens && eleventy --serve --port 8080",
+    "build": "npm run tokens && eleventy",
+    "check": "npm run tokens && node scripts/check-css.mjs --css src/css --strict && node scripts/check-contrast.mjs --json src/_data/tokens.json"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.1.7"
+  }
+}

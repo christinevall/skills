@@ -15,6 +15,18 @@ it by name or just describe the job.
 
 They work as a pair: `figma-library-from-code` keeps the library right, `storybook-figma-sync` builds screens from it.
 
+### Turn a site into a design system
+
+| Skill | For |
+| --- | --- |
+| [`systemify`](systemify) | Hand it a website link, a Figma file, a picture or a description: it measures what exists and builds a clean design system in code. Tokens with Mobile / Tablet / Desktop modes (like Figma variable modes), React + plain CSS, Storybook 10 with docs and tests, and the Storybook MCP so agents can prototype from the real components. **Needs:** Node.js 22+, a browser tool for measuring live sites |
+| [`systemify-lean`](systemify-lean) | The same method, kept as small as possible: plain HTML and CSS (Eleventy), a `/style-guide` page built from the same code, no framework, no Storybook. For personal and small-business sites. **Needs:** Node.js 22+ |
+
+Both measure first and invent nothing, decide components by their job (not their look), use
+modern CSS, and finish with an `AGENTS.md`, a `GAPS.md` and a list of what was not checked.
+Each comes with a tested starter project in `assets/starter/` and the rules it follows in
+`references/design-system-rules.md`.
+
 ## Learn the setup
 
 These skills assume a design system where code and Figma match. How to set

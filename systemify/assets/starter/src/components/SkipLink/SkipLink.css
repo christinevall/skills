@@ -1,0 +1,19 @@
+@layer reset, tokens, base, layout, components, utilities;
+
+@layer components {
+  .ds-skip-link {
+    position: fixed;
+    inset-block-start: var(--ds-space-sm);
+    inset-inline-start: var(--ds-space-sm);
+    z-index: var(--ds-layer-overlay);
+    padding: var(--ds-space-sm) var(--ds-space-md);
+    border-radius: var(--ds-button-radius);
+    background: var(--ds-color-action-primary-background);
+    color: var(--ds-color-action-primary-foreground);
+    font: var(--ds-text-label-md-strong);
+    text-decoration: none;
+    translate: 0 -200%;
+    transition: translate var(--ds-motion-duration-panel) var(--ds-motion-easing);
+  }
+  .ds-skip-link:focus-visible { translate: 0 0; }
+}

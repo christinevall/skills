@@ -1,0 +1,15 @@
+@layer reset, tokens, base, layout, components, utilities;
+
+@layer layout {
+  .ds-stack {
+    display: flex;
+    flex-direction: column;
+    gap: var(--ds-gap);
+  }
+  .ds-stack:is(ul, ol) { padding: 0; list-style: none; }
+  .ds-stack:is(fieldset) { border: 0; padding: 0; min-inline-size: 0; }
+  .ds-stack[data-align='start'] { align-items: flex-start; }
+  .ds-stack[data-align='center'] { align-items: center; }
+  .ds-stack[data-align='end'] { align-items: flex-end; }
+  .ds-stack[data-align='stretch'] { align-items: stretch; }
+}

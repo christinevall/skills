@@ -1,0 +1,25 @@
+{#- The page shell: every page uses it. Skip link, header, main, footer. -#}
+{%- from "components/site-header.njk" import siteHeader -%}
+<!doctype html>
+<html lang="{{ site.lang }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ title }} · {{ site.name }}</title>
+  <link rel="stylesheet" href="/css/main.css">
+  <script type="module" src="/js/invokers.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  {{ siteHeader(site, page.url) }}
+  <main id="main">
+    {{ content | safe }}
+  </main>
+  <footer class="section surface-subtle">
+    <div class="wrapper cluster" style="--justify: space-between">
+      <p class="voice-quiet">© {{ site.name }}</p>
+      <a href="mailto:hello@example.com">hello@example.com</a>
+    </div>
+  </footer>
+</body>
+</html>

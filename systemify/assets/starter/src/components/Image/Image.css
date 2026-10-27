@@ -1,0 +1,28 @@
+@layer reset, tokens, base, layout, components, utilities;
+
+@layer components {
+  .ds-image {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--ds-radius-image);
+    background: var(--ds-color-surface-subtle);
+    aspect-ratio: var(--_ratio, auto);
+  }
+  .ds-image[data-ratio='16/9'] { --_ratio: 16 / 9; }
+  .ds-image[data-ratio='4/3'] { --_ratio: 4 / 3; }
+  .ds-image[data-ratio='1/1'] { --_ratio: 1 / 1; }
+
+  .ds-image__img { inline-size: 100%; block-size: auto; }
+  .ds-image:not([data-ratio='auto']) .ds-image__img { block-size: 100%; object-fit: cover; }
+
+  .ds-image__fallback {
+    display: grid;
+    place-items: center;
+    min-block-size: 100%;
+    padding: var(--ds-space-lg);
+    color: var(--ds-color-text-muted);
+    font: var(--ds-text-body-sm);
+    text-align: center;
+  }
+  .ds-image[data-ratio='auto'] .ds-image__fallback { aspect-ratio: 16 / 9; }
+}

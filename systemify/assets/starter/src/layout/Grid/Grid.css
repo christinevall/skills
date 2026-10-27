@@ -1,0 +1,30 @@
+@layer reset, tokens, base, layout, components, utilities;
+
+@layer layout {
+  .ds-grid {
+    display: grid;
+    grid-template-columns: repeat(var(--ds-layout-columns), minmax(0, 1fr));
+    column-gap: var(--ds-layout-gutter);
+    row-gap: var(--ds-gap);
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+  .ds-grid[data-align='start'] { align-items: start; }
+  .ds-grid[data-align='center'] { align-items: center; }
+  .ds-grid[data-align='end'] { align-items: end; }
+  .ds-grid[data-align='stretch'] { align-items: stretch; }
+
+  /*
+   * Spans per mode. The breakpoints match the Tablet and Desktop modes in
+   * tokens.json (50em = 800px, 80em = 1280px). CSS does not allow variables in
+   * media queries, so these two numbers are written out; validate checks them.
+   */
+  .ds-col { min-inline-size: 0; grid-column: auto / span var(--_col-span); }
+  @media (min-width: 50em) {
+    .ds-col { grid-column: var(--_col-start-tablet, auto) / span var(--_col-span-tablet); }
+  }
+  @media (min-width: 80em) {
+    .ds-col { grid-column: var(--_col-start-desktop, auto) / span var(--_col-span-desktop); }
+  }
+}

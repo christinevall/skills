@@ -1,0 +1,12 @@
+@layer reset, tokens, base, layout, components, utilities;
+
+@layer components {
+  /* Each text style applied as a whole. Sizes change per breakpoint inside the token. */
+  .ds-heading { font: var(--_text); letter-spacing: var(--_tracking); color: var(--ds-color-text-strong); }
+  .ds-heading[data-text-style='display-lg'] { --_text: var(--ds-text-display-lg); --_tracking: var(--ds-text-display-lg-letter-spacing); }
+  .ds-heading[data-text-style='heading-lg'] { --_text: var(--ds-text-heading-lg); --_tracking: var(--ds-text-heading-lg-letter-spacing); }
+  .ds-heading[data-text-style='heading-md'] { --_text: var(--ds-text-heading-md); --_tracking: var(--ds-text-heading-md-letter-spacing); }
+  .ds-heading[data-text-style='heading-sm'] { --_text: var(--ds-text-heading-sm); --_tracking: var(--ds-text-heading-sm-letter-spacing); }
+  .ds-heading[data-align='center'] { text-align: center; }
+  .ds-heading[data-tone='default'] { color: var(--ds-color-text-default); }
+}

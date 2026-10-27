@@ -1,0 +1,45 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { ColorTable, ColorPrimitives } from './TokenDocs';
+
+<Meta title="Foundations/Colour" />
+
+# Colour
+
+Two tiers, as in every other foundation:
+
+| Tier | What it is | Example | Who uses it |
+| --- | --- | --- | --- |
+| **Primitive** | The raw palette, named by hue and step | `--ds-color-neutral-800` | Only the semantic tier |
+| **Semantic** | What a colour is **for**; each one points at a primitive | `--ds-color-text-strong` → neutral-800 | Components |
+
+Components only ever use semantic colours (the validator checks it). To change
+the heading colour everywhere, point `text.strong` at another primitive in
+`tokens.json`. In Figma: a **Primitives** collection (hidden from publishing) and a
+**Color** collection whose variables alias into it.
+
+One light theme, as on the source.
+
+## Semantic
+
+### Text
+<ColorTable group="text" />
+
+### Surfaces
+<ColorTable group="surface" />
+
+### Actions
+<ColorTable group="action" />
+
+### Borders
+<ColorTable group="border" />
+
+### Brand and badges
+<ColorTable group="brand" />
+<ColorTable group="badge" />
+
+### Feedback (for prototypes)
+<ColorTable group="feedback" />
+
+## Primitives
+
+<ColorPrimitives />

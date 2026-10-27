@@ -1,0 +1,26 @@
+/*
+ * Site header: name + nav. On small screens the nav moves into a <dialog>
+ * opened with showModal(), because it covers the page (the page behind becomes
+ * inert). On wide screens the inline nav shows and the menu button hides.
+ */
+.site-header { padding-block: var(--fs-space-s); border-block-end: 1px solid var(--fs-color-border-default); }
+.site-header__inner { display: flex; align-items: center; justify-content: space-between; gap: var(--fs-space-m); }
+.site-header__name { font: var(--fs-text-firm); color: inherit; text-decoration: none; }
+.site-header nav ul { list-style: none; padding: 0; }
+.site-header nav a { font: var(--fs-text-quiet); letter-spacing: var(--fs-text-quiet-letter-spacing); color: inherit; text-decoration: none; }
+.site-header nav a[aria-current="page"] { text-decoration: underline; text-underline-offset: 0.3em; }
+.site-header__inline { display: none; }
+
+.site-header__menu {
+  margin: 0 0 0 auto; inline-size: min(100%, 24rem); max-block-size: none; block-size: 100%;
+  padding: var(--fs-space-m); border: 0;
+  background: var(--fs-color-surface-default); color: var(--fs-color-text-default);
+}
+.site-header__menu::backdrop { background: var(--fs-color-text-default); opacity: 0.4; }
+.site-header__menu ul { flex-direction: column; align-items: flex-start; gap: var(--fs-space-s); margin-block-start: var(--fs-space-l); }
+html:has(.site-header__menu:modal) { overflow: hidden; }
+
+@media (min-width: 48em) {
+  .site-header__inline { display: block; }
+  .site-header__toggle, .site-header__menu { display: none; }
+}

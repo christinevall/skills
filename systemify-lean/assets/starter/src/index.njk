@@ -1,0 +1,23 @@
+---
+layout: layouts/base.njk
+title: Home
+---
+{%- from "components/button.njk" import button -%}
+{%- from "components/card.njk" import card -%}
+<section class="section">
+  <div class="wrapper flow prose">
+    <h1>Small studio, careful work.</h1>
+    <p class="voice-warm">Demo content. Replace it with the copy from content/, word for word.</p>
+    <div class="cluster">{{ button({ label: "See the work", href: "/work/" }) }} {{ button({ label: "Get in touch", href: "mailto:hello@example.com", variant: "secondary" }) }}</div>
+  </div>
+</section>
+<section class="section surface-subtle">
+  <div class="wrapper flow">
+    <h2>Recent work</h2>
+    <div class="grid">
+      {{ card({ title: "Harbour signage", text: "Wayfinding for a ferry terminal.", href: "/work/" }) }}
+      {{ card({ title: "Field journal", text: "A printed notebook series.", href: "/work/" }) }}
+      {{ card({ title: "Market posters", text: "A summer poster campaign.", href: "/work/" }) }}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,50 @@
+{
+  "name": "design-system",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Tokens, plain CSS and React components, documented in Storybook, with the Storybook MCP for prototyping.",
+  "type": "module",
+  "engines": { "node": ">=22.12" },
+  "sideEffects": ["**/*.css"],
+  "exports": {
+    ".": "./src/index.ts",
+    "./styles.css": "./src/styles/index.css",
+    "./tokens.json": "./tokens/tokens.json"
+  },
+  "scripts": {
+    "tokens": "node scripts/build-tokens.mjs",
+    "storybook": "npm run tokens && storybook dev -p 6006 --no-open",
+    "build-storybook": "npm run tokens && storybook build --quiet",
+    "manifest": "node scripts/build-manifest.mjs",
+    "build": "npm run check && npm run build-storybook && npm run manifest",
+    "test": "vitest run --project=storybook",
+    "validate": "node scripts/validate.mjs",
+    "contrast": "node scripts/check-contrast.mjs",
+    "typecheck": "tsc --noEmit",
+    "check": "npm run tokens && npm run typecheck && npm run validate -- --strict && npm run contrast"
+  },
+  "dependencies": {
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
+  },
+  "devDependencies": {
+    "@storybook/addon-a11y": "^10.6.4",
+    "@storybook/addon-docs": "^10.6.4",
+    "@storybook/addon-mcp": "^10.6.4",
+    "@storybook/addon-vitest": "^10.6.4",
+    "@storybook/react-vite": "^10.6.4",
+    "@types/node": "^26.6.5",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.1.2",
+    "@vitest/browser": "^5.0.5",
+    "@vitest/browser-playwright": "^5.0.5",
+    "playwright": "^1.64.1",
+    "react-docgen-typescript": "^2.4.0",
+    "remark-gfm": "^4.0.1",
+    "storybook": "^10.6.4",
+    "typescript": "^6.0.3",
+    "vite": "^8.3.5",
+    "vitest": "^5.0.5"
+  }
+}

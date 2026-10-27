@@ -1,0 +1,33 @@
+/*
+ * A small modern reset. It removes browser quirks, not design decisions.
+ * Lives in the lowest layer, so anything else overrides it.
+ */
+@layer reset {
+  *, *::before, *::after { box-sizing: border-box; }
+
+  * { margin: 0; }
+
+  html {
+    /* Stop phones from inflating text on rotation. */
+    -webkit-text-size-adjust: none;
+    text-size-adjust: none;
+    /* Lets height: auto animate (used by disclosures). */
+    interpolate-size: allow-keywords;
+  }
+
+  body { min-block-size: 100dvh; }
+
+  img, picture, video, canvas, svg { display: block; max-inline-size: 100%; }
+
+  /* Form controls inherit the text style instead of the browser's 13px default. */
+  input, button, textarea, select { font: inherit; letter-spacing: inherit; color: inherit; }
+
+  button { cursor: pointer; }
+
+  /* Long words and URLs wrap instead of breaking the layout. */
+  p, h1, h2, h3, h4, h5, h6, li, dd, blockquote { overflow-wrap: break-word; }
+
+  ul[role='list'], ol[role='list'] { list-style: none; padding: 0; }
+
+  textarea:not([rows]) { min-block-size: 6lh; }
+}

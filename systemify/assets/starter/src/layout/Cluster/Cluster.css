@@ -1,0 +1,20 @@
+@layer reset, tokens, base, layout, components, utilities;
+
+@layer layout {
+  .ds-cluster {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--ds-gap);
+  }
+  .ds-cluster:is(ul, ol) { padding: 0; list-style: none; }
+  .ds-cluster[data-wrap='false'] { flex-wrap: nowrap; }
+  .ds-cluster[data-justify='start'] { justify-content: flex-start; }
+  .ds-cluster[data-justify='center'] { justify-content: center; }
+  .ds-cluster[data-justify='end'] { justify-content: flex-end; }
+  .ds-cluster[data-justify='between'] { justify-content: space-between; }
+  .ds-cluster[data-align='start'] { align-items: flex-start; }
+  .ds-cluster[data-align='center'] { align-items: center; }
+  .ds-cluster[data-align='end'] { align-items: flex-end; }
+  .ds-cluster[data-align='baseline'] { align-items: baseline; }
+  .ds-cluster[data-align='stretch'] { align-items: stretch; }
+}

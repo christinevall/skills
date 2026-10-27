@@ -1,0 +1,42 @@
+/*
+ * Base: what plain HTML looks like before any component is used.
+ * Tokens only. If something here needs a raw value, a token is missing.
+ */
+@layer base {
+  html {
+    font: var(--ds-text-body-md);
+    letter-spacing: var(--ds-text-body-md-letter-spacing);
+    color: var(--ds-color-text-default);
+    background: var(--ds-color-surface-default);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* Anchor jumps stop below the sticky header instead of under it. */
+    scroll-padding-block-start: var(--ds-layout-header-height);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html { scroll-behavior: smooth; }
+  }
+
+  h1, h2, h3, h4, h5, h6 { color: var(--ds-color-text-strong); text-wrap: balance; }
+  p, li, figcaption { text-wrap: pretty; }
+
+  ::selection { background: var(--ds-color-surface-subtle); color: var(--ds-color-text-strong); }
+
+  /* One focus ring for everything, keyboard only. */
+  :focus-visible {
+    outline: var(--ds-focus-ring-width) solid var(--ds-color-border-focus);
+    outline-offset: var(--ds-focus-ring-offset);
+  }
+
+  a { color: var(--ds-color-text-strong); text-underline-offset: 0.2em; text-decoration-thickness: 0.06em; }
+
+  /* Respect people who turn motion off in their operating system. */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}

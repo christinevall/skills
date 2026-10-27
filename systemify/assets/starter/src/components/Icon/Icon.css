@@ -1,0 +1,15 @@
+@layer reset, tokens, base, layout, components, utilities;
+
+@layer components {
+  .ds-icon {
+    display: inline-block;
+    flex: none;
+    inline-size: var(--_size);
+    block-size: var(--_size);
+    vertical-align: -0.125em;
+  }
+  /* inherit: as big as the text around it. md and lg: fixed sizes for icon buttons. */
+  .ds-icon[data-size='inherit'] { --_size: 1em; }
+  .ds-icon[data-size='md'] { --_size: var(--ds-icon-size-md); }
+  .ds-icon[data-size='lg'] { --_size: var(--ds-icon-size-lg); }
+}

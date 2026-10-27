@@ -1,0 +1,15 @@
+/*
+ * The gap scale, shared by every layout primitive (Stack, Cluster, Grid,
+ * Split). A component writes data-gap="md"; this file turns the name into a
+ * token. One list here instead of nine rules in every component.
+ */
+@layer layout {
+  [data-gap='none'] { --ds-gap: 0; }
+  [data-gap='2xs'] { --ds-gap: var(--ds-space-2xs); }
+  [data-gap='xs'] { --ds-gap: var(--ds-space-xs); }
+  [data-gap='sm'] { --ds-gap: var(--ds-space-sm); }
+  [data-gap='md'] { --ds-gap: var(--ds-space-md); }
+  [data-gap='lg'] { --ds-gap: var(--ds-space-lg); }
+  [data-gap='xl'] { --ds-gap: var(--ds-space-xl); }
+  [data-gap='2xl'] { --ds-gap: var(--ds-space-2xl); }
+}

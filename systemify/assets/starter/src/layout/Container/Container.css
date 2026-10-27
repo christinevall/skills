@@ -1,0 +1,12 @@
+@layer reset, tokens, base, layout, components, utilities;
+
+@layer layout {
+  .ds-container[data-size='content'] {
+    inline-size: 100%;
+    /* Content width plus the margins on both sides. */
+    max-inline-size: calc(var(--ds-layout-content-width) + 2 * var(--ds-layout-margin));
+    margin-inline: auto;
+    padding-inline: var(--ds-layout-margin);
+  }
+  .ds-container[data-size='full'] { inline-size: 100%; }
+}

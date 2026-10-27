@@ -1,0 +1,16 @@
+/*
+ * main.css: the only stylesheet a page links. It sets the layer order once,
+ * so a later layer always wins, whatever the specificity:
+ *   reset → tokens → base → compositions → blocks → utilities
+ * (CUBE CSS: https://cube.fyi). Exceptions are data attributes on a block.
+ */
+@layer reset, tokens, base, compositions, blocks, utilities;
+
+@import url("reset.css") layer(reset);
+@import url("tokens.css"); /* already wrapped in @layer tokens by the build */
+@import url("base.css") layer(base);
+@import url("compositions.css") layer(compositions);
+@import url("blocks/button.css") layer(blocks);
+@import url("blocks/site-header.css") layer(blocks);
+@import url("blocks/card.css") layer(blocks);
+@import url("utilities.css") layer(utilities);
