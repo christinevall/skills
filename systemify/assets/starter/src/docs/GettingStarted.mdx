@@ -1,0 +1,39 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { TokenCounts } from './TokenDocs';
+
+<Meta title="Start here/Getting started" />
+
+# Getting started
+
+This Storybook is the design system: tokens, plain CSS and React components,
+each with its stories, tests and docs. **The code is the source.** Figma, if
+there is a library, mirrors it.
+
+<TokenCounts />
+
+## Reading order
+
+1. **Foundations**: colour, typography, space and shape, the layout grid.
+2. **Layout**: Section, Container, Grid + Col, Stack, Cluster. Pages are built from these.
+3. **Components**: the small parts (Heading, Text, Link, Button, Image…).
+4. **Patterns** and **Templates**: larger blocks and page layouts.
+5. **Prototypes**: screens built from the system, by people or agents.
+
+## Tokens in three tiers
+
+| Tier | What it is | Who uses it |
+| --- | --- | --- |
+| Primitive | The raw palette and scales | Only semantic tokens |
+| Semantic | What a value is for: text, surface, space between things | Components and layouts |
+| Component | One component's own knobs | That component |
+
+## Modes
+
+Mobile, Tablet and Desktop are **modes**, like Figma variable modes. A text
+style is one style whose size changes per mode. Switch the viewport in the
+toolbar to see it.
+
+## Where to read more
+
+`AGENTS.md` (the rules), `docs/audit.md` (what the source measured),
+`docs/decisions.md` (why), `GAPS.md` (what is open or unchecked).

@@ -1,0 +1,12 @@
+{#
+  button({ label, href, variant })
+  A link when it has href, otherwise a <button type="button">.
+  variant: "primary" (default) | "secondary"
+#}
+{% macro button(props) %}
+{%- if props.href -%}
+<a class="button"{% if props.variant and props.variant != "primary" %} data-variant="{{ props.variant }}"{% endif %} href="{{ props.href }}">{{ props.label }}</a>
+{%- else -%}
+<button class="button" type="button"{% if props.variant and props.variant != "primary" %} data-variant="{{ props.variant }}"{% endif %}>{{ props.label }}</button>
+{%- endif -%}
+{% endmacro %}

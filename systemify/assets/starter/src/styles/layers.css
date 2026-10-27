@@ -1,0 +1,11 @@
+/*
+ * The cascade order of the whole system, declared once.
+ * A later layer always wins over an earlier one, whatever the selector
+ * specificity. So a utility beats a component, a component beats base
+ * styles, and nobody ever needs !important.
+ *
+ * Every component stylesheet repeats this line at the top. Repeating it is
+ * harmless, and it guarantees the order even if a component's CSS happens
+ * to load before this file.
+ */
+@layer reset, tokens, base, layout, components, utilities;

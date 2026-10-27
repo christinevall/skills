@@ -1,0 +1,51 @@
+[
+  {
+    "name": "button",
+    "file": "_includes/components/button.njk",
+    "css": "css/blocks/button.css",
+    "description": "A link or a button that looks like a button. A link when it has href.",
+    "status": "stable",
+    "props": {
+      "label": { "type": "string", "required": true, "description": "The visible text. It is also the accessible name." },
+      "href": { "type": "string", "description": "Makes it a link. Leave out for an action on the page." },
+      "variant": { "type": "enum", "values": ["primary", "secondary"], "default": "primary", "description": "primary: the one main action in a section. secondary: everything else." }
+    },
+    "examples": [
+      { "title": "Primary link", "props": { "label": "See the work", "href": "/work/" } },
+      { "title": "Secondary", "props": { "label": "Get in touch", "href": "mailto:hello@example.com", "variant": "secondary" } }
+    ],
+    "usage": "{% from \"components/button.njk\" import button %}\n{{ button({ label: \"See the work\", href: \"/work/\" }) }}"
+  },
+  {
+    "name": "card",
+    "file": "_includes/components/card.njk",
+    "css": "css/blocks/card.css",
+    "description": "Image (optional), title link, one line of text. Use inside .grid.",
+    "status": "stable",
+    "props": {
+      "title": { "type": "string", "required": true },
+      "text": { "type": "string", "required": true },
+      "href": { "type": "string", "required": true, "description": "Where the title links." },
+      "image": { "type": "string", "description": "Image path. 3:2, cropped to fit." },
+      "alt": { "type": "string", "description": "Required when image is set. Empty string if decorative." },
+      "level": { "type": "enum", "values": [2, 3], "default": 3, "description": "Heading level for the title. The look does not change." }
+    },
+    "examples": [
+      { "title": "Without image", "props": { "title": "Harbour signage", "text": "Wayfinding for a ferry terminal.", "href": "/work/" } }
+    ],
+    "usage": "{% from \"components/card.njk\" import card %}\n<div class=\"grid\">{{ card({ title: \"…\", text: \"…\", href: \"…\" }) }}</div>"
+  },
+  {
+    "name": "siteHeader",
+    "file": "_includes/components/site-header.njk",
+    "css": "css/blocks/site-header.css",
+    "description": "Site name and main nav. Already in the base layout; do not add it to pages.",
+    "status": "stable",
+    "props": {
+      "site": { "type": "object", "required": true, "description": "From _data/site.json (name, nav)." },
+      "currentUrl": { "type": "string", "required": true, "description": "page.url. Sets aria-current on the matching link." }
+    },
+    "examples": [],
+    "usage": "In layouts/base.njk only."
+  }
+]

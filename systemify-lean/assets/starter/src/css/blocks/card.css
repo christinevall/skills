@@ -1,0 +1,8 @@
+/*
+ * Card: an image, a title, a line of text and a link. The whole card is not
+ * a link; the title link is (one link per card, a real name for screen readers).
+ */
+.card { display: flex; flex-direction: column; gap: var(--fs-space-xs); }
+.card :is(h2, h3) { font: var(--fs-text-firm); letter-spacing: var(--fs-text-firm-letter-spacing); }
+.card img { aspect-ratio: 3 / 2; object-fit: cover; }
+.card a { color: inherit; }

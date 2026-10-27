@@ -1,0 +1,11 @@
+/* A small modern reset (after Andy Bell and Josh Comeau). */
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; }
+html { -webkit-text-size-adjust: none; text-size-adjust: none; }
+body { min-block-size: 100vh; }
+img, picture, svg, video { display: block; max-inline-size: 100%; block-size: auto; }
+input, button, textarea, select { font: inherit; color: inherit; }
+:target { scroll-margin-block: 5ex; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+}

@@ -1,0 +1,15 @@
+/*
+ * Utilities: a handful of single-purpose helpers. Highest layer, so they win.
+ * Kept deliberately tiny. This is not a utility-class framework.
+ */
+@layer utilities {
+  /* Hidden on screen, still read by screen readers. */
+  .ds-visually-hidden:not(:focus-within, :active) {
+    position: absolute !important;
+    inline-size: 1px !important;
+    block-size: 1px !important;
+    overflow: hidden !important;
+    clip-path: inset(50%) !important;
+    white-space: nowrap !important;
+  }
+}

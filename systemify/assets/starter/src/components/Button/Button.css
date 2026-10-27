@@ -1,0 +1,53 @@
+@layer reset, tokens, base, layout, components, utilities;
+
+@layer components {
+  .ds-button {
+    --_bg: var(--ds-color-action-primary-background);
+    --_bg-hover: var(--ds-color-action-primary-background-hover);
+    --_fg: var(--ds-color-action-primary-foreground);
+    --_border: var(--_bg);
+
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-block-size: var(--ds-button-height);
+    padding-inline: var(--ds-button-padding-inline);
+    border: var(--ds-border-width-default) solid var(--_border);
+    border-radius: var(--ds-button-radius);
+    background: var(--_bg);
+    color: var(--_fg);
+    font: var(--ds-text-label-md-strong);
+    letter-spacing: var(--ds-text-label-md-strong-letter-spacing);
+    text-decoration: none;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background-color var(--ds-motion-duration) var(--ds-motion-easing);
+  }
+  .ds-button:hover { background: var(--_bg-hover); color: var(--_fg); }
+
+  .ds-button[data-variant='secondary'] {
+    --_bg: transparent;
+    --_bg-hover: var(--ds-color-action-secondary-background-hover);
+    --_fg: var(--ds-color-text-strong);
+    --_border: var(--ds-color-action-secondary-border);
+  }
+
+  .ds-button[data-full-width='always'] { inline-size: 100%; }
+  /* Mobile only: full width below the Tablet breakpoint (50em = 800px). */
+  @media not (min-width: 50em) {
+    .ds-button[data-full-width='mobile'] { inline-size: 100%; }
+  }
+
+  .ds-button:disabled,
+  .ds-button[aria-disabled='true']:not([data-loading]) { opacity: 0.4; cursor: not-allowed; }
+
+  /* Loading: label kept (opacity, not visibility: it must stay readable to screen readers). */
+  .ds-button[data-loading] { cursor: progress; }
+  .ds-button[data-loading] .ds-button__label { opacity: 0; }
+  .ds-button__spinner { position: absolute; }
+
+  @media (forced-colors: active) {
+    .ds-button { border-color: ButtonText; }
+  }
+}

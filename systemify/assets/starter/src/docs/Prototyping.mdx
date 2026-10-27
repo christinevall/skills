@@ -1,0 +1,23 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Start here/Prototyping with AI" />
+
+# Prototyping with AI
+
+While Storybook runs, it serves an **MCP server** at `http://localhost:6006/mcp`.
+An agent (Claude Code, Cursor) connected to it lists the components, reads
+their props and docs, previews stories and runs the tests. `.mcp.json` already points at it.
+
+## The rules an agent follows (from AGENTS.md)
+
+1. Read the system first, through the MCP (`docs-list`, then `docs-show`), never from memory.
+2. A prototype is a story in `src/prototypes/<Name>/`, titled `Prototypes/<Name>`.
+3. Only components and props that exist. No new CSS, no `style` attribute.
+4. Sections, then `Grid` + `Col` on the layout grid, then components.
+5. Run `test-run`, then list the gaps: what the system could not do.
+
+## Try it
+
+> With the Storybook MCP, build a prototype "Contact page": a page title, a short
+> intro in 8 of 12 columns, and two cards side by side (6 + 6) that link to email
+> and to a booking page. Then tell me what the system was missing.

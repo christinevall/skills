@@ -1,0 +1,9 @@
+{
+  "name": "Fieldnote Studio",
+  "lang": "en",
+  "nav": [
+    { "label": "Home", "url": "/" },
+    { "label": "Work", "url": "/work/" },
+    { "label": "Style guide", "url": "/style-guide/" }
+  ]
+}

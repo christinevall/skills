@@ -1,0 +1,64 @@
+---
+layout: layouts/base.njk
+title: Style guide
+permalink: /style-guide/
+---
+{#-
+  The style guide is a page of the site itself, built from the same tokens,
+  CSS and components, so it cannot drift. Colours and type come from
+  _data/tokens.json (written by `npm run tokens`); components from
+  _data/components.json, which is also the contract agents read.
+-#}
+{%- from "components/button.njk" import button -%}
+{%- from "components/card.njk" import card -%}
+{%- set render = { button: button, card: card } -%}
+<div class="wrapper flow section">
+  <h1>Style guide</h1>
+  <p class="voice-warm prose">Everything this site is made of. Generated from the tokens and the component list, so it stays true.</p>
+
+  <h2 id="colour">Colour</h2>
+  <div class="grid" style="--min: 12rem">
+    {%- for t in tokens %}{% if t.type == "color" and t.tier == "semantic" %}
+    <figure class="flow" style="--flow-space: var(--fs-space-2xs)">
+      <div style="block-size: 4rem; background: var({{ t.cssVar }}); border: 1px solid var(--fs-color-border-default)"></div>
+      <figcaption class="voice-quiet">{{ t.key | replace("semantic.color.", "") }}<br><code class="text-muted">{{ t.value }} · {{ t.alias | replace("primitive.color.", "") }}</code></figcaption>
+    </figure>
+    {%- endif %}{% endfor %}
+  </div>
+
+  <h2 id="type">Type</h2>
+  <p class="prose">Each voice is one style. Its size changes at the breakpoints; its name does not. Any element can use any voice: <code>&lt;h2 class="voice-firm"&gt;</code>.</p>
+  {%- for t in tokens %}{% if t.type == "typography" %}
+  {%- set name = t.key | replace("semantic.text.", "") %}
+  <div class="flow" style="--flow-space: var(--fs-space-3xs)">
+    <p class="voice-{{ name }}">The quick brown fox, {{ name }}</p>
+    <p class="voice-quiet text-muted">.voice-{{ name }} · {{ t.description }} · mobile {{ t.value.mobile.fontSize }} · tablet {{ t.value.tablet.fontSize }} · desktop {{ t.value.desktop.fontSize }}</p>
+  </div>
+  {%- endif %}{% endfor %}
+
+  <h2 id="space">Space</h2>
+  {%- for t in tokens %}{% if t.key.startsWith("semantic.space.") %}
+  <div class="cluster">
+    <div style="inline-size: var({{ t.cssVar }}); block-size: 1rem; background: var(--fs-color-action-primary-background)"></div>
+    <code>{{ t.key | replace("semantic.space.", "") }} · {{ t.value }}{% if t.responsive %} → {{ t.responsive.tablet }} → {{ t.responsive.desktop }}{% endif %}</code>
+  </div>
+  {%- endif %}{% endfor %}
+
+  <h2 id="layout">Layout</h2>
+  <p class="prose">Layouts are classes that arrange their children: <code>.wrapper</code>, <code>.flow</code>, <code>.prose</code>, <code>.section</code>, <code>.cluster</code>, <code>.with-sidebar</code>, <code>.switcher</code>, <code>.grid</code>. See css/compositions.css.</p>
+
+  <h2 id="components">Components</h2>
+  {%- for c in components %}
+  <section class="flow" aria-labelledby="c-{{ c.name }}">
+    <h3 id="c-{{ c.name }}">{{ c.name }} <span class="voice-quiet text-muted">{{ c.status }}</span></h3>
+    <p class="prose">{{ c.description }}</p>
+    {%- for ex in c.examples %}
+    <div class="flow" style="--flow-space: var(--fs-space-2xs)">
+      <p class="voice-quiet text-muted">{{ ex.title }}</p>
+      <div>{{ render[c.name](ex.props) }}</div>
+    </div>
+    {%- endfor %}
+    <pre><code>{{ c.usage }}</code></pre>
+  </section>
+  {%- endfor %}
+</div>

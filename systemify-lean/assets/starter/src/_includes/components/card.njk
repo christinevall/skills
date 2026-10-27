@@ -1,0 +1,15 @@
+{#
+  card({ title, text, href, image, alt, level })
+  image is optional. alt is required when image is set ("" if decorative).
+  level: heading level, 2 or 3 (default 3). The look stays the same.
+#}
+{% macro card(props) %}
+{%- set h = props.level or 3 -%}
+<article class="card">
+  {%- if props.image %}
+  <img src="{{ props.image }}" alt="{{ props.alt }}" loading="lazy" width="600" height="400">
+  {%- endif %}
+  <h{{ h }}><a href="{{ props.href }}">{{ props.title }}</a></h{{ h }}>
+  <p class="text-muted">{{ props.text }}</p>
+</article>
+{% endmacro %}

@@ -1,0 +1,38 @@
+/*
+ * compositions.css: layout as relationships (Every Layout, CUBE CSS).
+ * Each class arranges its children and knows nothing about what they are.
+ * Tune one with a custom property: <div class="cluster" style="--gutter: var(--fs-space-s)">.
+ */
+
+/* Wrapper: centred content with the page margin. */
+.wrapper {
+  inline-size: min(100% - 2 * var(--fs-space-page-margin), var(--fs-size-content));
+  margin-inline: auto;
+}
+
+/* Flow: space between siblings, never after the last one. */
+.flow > * + * { margin-block-start: var(--flow-space, 1em); }
+/* Pair rules from the audit (replace with the measured ones). */
+:where(.flow) > :is(h2, h3) { --flow-space: var(--fs-space-l); }
+:where(.flow) > :is(h2, h3) + * { --flow-space: var(--fs-space-xs); }
+
+/* Measure: comfortable line length for running text. */
+.prose { max-inline-size: var(--measure, 65ch); }
+
+/* Section: vertical space between page sections. */
+.section { padding-block: var(--fs-space-section); }
+
+/* Cluster: a row that wraps (nav, tags, button groups). */
+.cluster { display: flex; flex-wrap: wrap; gap: var(--gutter, var(--fs-space-s)); align-items: var(--align, center); justify-content: var(--justify, flex-start); }
+
+/* Sidebar: two parts side by side; the side one keeps its width, the row stacks when the main part would be narrower than --content-min. */
+.with-sidebar { display: flex; flex-wrap: wrap; gap: var(--gutter, var(--fs-space-l)); }
+.with-sidebar > :first-child { flex-basis: var(--side-width, 20rem); flex-grow: 1; }
+.with-sidebar > :last-child { flex-basis: 0; flex-grow: 999; min-inline-size: var(--content-min, 50%); }
+
+/* Switcher: a row of equal items that becomes a column below --threshold. */
+.switcher { display: flex; flex-wrap: wrap; gap: var(--gutter, var(--fs-space-m)); }
+.switcher > * { flex-grow: 1; flex-basis: calc((var(--threshold, 40rem) - 100%) * 999); }
+
+/* Grid: as many columns as fit, each at least --min wide. */
+.grid { display: grid; gap: var(--gutter, var(--fs-space-m)); grid-template-columns: repeat(auto-fit, minmax(min(var(--min, 16rem), 100%), 1fr)); }

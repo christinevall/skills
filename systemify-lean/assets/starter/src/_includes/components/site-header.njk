@@ -1,0 +1,26 @@
+{#
+  siteHeader(site, currentUrl)
+  The site name and the main nav. Small screens: a Menu button opens the nav
+  in a modal <dialog> (invoker commands, no script needed; js/invokers.js is a
+  fallback for older browsers). Wide screens: the nav sits inline.
+#}
+{% macro siteHeader(site, currentUrl) %}
+{%- set links -%}
+  <ul class="cluster" style="--gutter: var(--fs-space-m)">
+    {%- for item in site.nav %}
+    <li><a href="{{ item.url }}"{% if item.url == currentUrl %} aria-current="page"{% endif %}>{{ item.label }}</a></li>
+    {%- endfor %}
+  </ul>
+{%- endset -%}
+<header class="site-header">
+  <div class="wrapper site-header__inner">
+    <a class="site-header__name" href="/">{{ site.name }}</a>
+    <nav class="site-header__inline" aria-label="Main">{{ links | safe }}</nav>
+    <button class="button site-header__toggle" data-variant="secondary" type="button" command="show-modal" commandfor="site-menu">Menu</button>
+    <dialog class="site-header__menu" id="site-menu" aria-label="Menu">
+      <button class="button" data-variant="secondary" type="button" command="close" commandfor="site-menu" autofocus>Close</button>
+      <nav aria-label="Main menu">{{ links | safe }}</nav>
+    </dialog>
+  </div>
+</header>
+{% endmacro %}

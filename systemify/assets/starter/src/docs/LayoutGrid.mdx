@@ -1,0 +1,40 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { ResponsiveTable } from './TokenDocs';
+
+<Meta title="Foundations/Layout grid" />
+
+# Layout grid
+
+One grid, three modes, the same numbers in Figma and code. Demo values: replace them with the audit's.
+
+| Mode | From | Columns | Gutter | Page margin | Content |
+| --- | --- | --- | --- | --- | --- |
+| Mobile | 0 | 4 | 16px | 24px | fluid |
+| Tablet | 800px | 8 | 24px | 40px | fluid |
+| Desktop | 1280px | 12 | 32px | 56px | max 1168px (margins grow beyond) |
+
+The breakpoints come from the audit: the widths where the source layout changes.
+In Figma, set up a layout grid per mode with these values, bound to the variables below.
+
+**In code**: `Grid` and `Col`. A Col says how many columns it spans per mode:
+
+```tsx
+<Grid>
+  <Col tablet={4} desktop={5}>image</Col>   {/* 5 of 12 on Desktop, 4 of 8 on Tablet, full on Mobile */}
+  <Col tablet={4} desktop={7}>text</Col>
+</Grid>
+```
+
+Example layouts on the grid:
+
+| Pattern | Desktop | Tablet | Mobile |
+| --- | --- | --- | --- |
+| Media + text | 5 + 7 | 4 + 4 | stacked, media first |
+| Two cards | 6 + 6 | 4 + 4 | stacked |
+| Three cards | 4 + 4 + 4 | stacked | stacked |
+
+Replace this table with the regions the audit found.
+
+See **Layout / Grid** for live examples.
+
+<ResponsiveTable prefix="semantic.layout." />

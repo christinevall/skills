@@ -1,0 +1,28 @@
+/*
+ * base.css: how plain HTML looks before any class. Elements get the default
+ * voice; headings get theirs. A class can give any element any voice:
+ * <h2 class="voice-firm"> is a small h2. Element and look stay separate.
+ */
+html {
+  font: var(--fs-text-calm);
+  letter-spacing: var(--fs-text-calm-letter-spacing);
+  color: var(--fs-color-text-default);
+  background: var(--fs-color-surface-default);
+}
+h1 { font: var(--fs-text-loud); letter-spacing: var(--fs-text-loud-letter-spacing); }
+h2 { font: var(--fs-text-strong); letter-spacing: var(--fs-text-strong-letter-spacing); }
+h3 { font: var(--fs-text-firm); letter-spacing: var(--fs-text-firm-letter-spacing); }
+h1, h2, h3 { text-wrap: balance; }
+p, li { text-wrap: pretty; } /* enhancement: Firefox ignores it */
+
+a { color: var(--fs-color-text-link); text-underline-offset: 0.2em; }
+a:hover { text-decoration-thickness: 2px; }
+:focus-visible { outline: 2px solid var(--fs-color-border-focus); outline-offset: 2px; }
+
+/* Voice classes: the same patterns, for any element. */
+.voice-loud { font: var(--fs-text-loud); letter-spacing: var(--fs-text-loud-letter-spacing); }
+.voice-strong { font: var(--fs-text-strong); letter-spacing: var(--fs-text-strong-letter-spacing); }
+.voice-firm { font: var(--fs-text-firm); letter-spacing: var(--fs-text-firm-letter-spacing); }
+.voice-warm { font: var(--fs-text-warm); letter-spacing: var(--fs-text-warm-letter-spacing); }
+.voice-calm { font: var(--fs-text-calm); letter-spacing: var(--fs-text-calm-letter-spacing); }
+.voice-quiet { font: var(--fs-text-quiet); letter-spacing: var(--fs-text-quiet-letter-spacing); }

@@ -1,0 +1,16 @@
+/*
+ * Button: a link or a button that looks like one.
+ * <a class="button" href="…">  ·  <button class="button" data-variant="secondary">
+ */
+.button {
+  display: inline-flex; align-items: center; gap: var(--fs-space-2xs);
+  padding: var(--fs-space-xs) var(--fs-space-m);
+  font: var(--fs-text-quiet); letter-spacing: var(--fs-text-quiet-letter-spacing);
+  text-decoration: none; cursor: pointer;
+  color: var(--fs-color-action-primary-foreground);
+  background: var(--fs-color-action-primary-background);
+  border: 1px solid transparent; border-radius: var(--fs-radius-control);
+}
+.button:hover { background: var(--fs-color-action-primary-background-hover); }
+.button[data-variant="secondary"] { color: var(--fs-color-text-default); background: transparent; border-color: var(--fs-color-border-strong); }
+.button[data-variant="secondary"]:hover { background: var(--fs-color-surface-subtle); }

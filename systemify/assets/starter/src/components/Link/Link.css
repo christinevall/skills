@@ -1,0 +1,27 @@
+@layer reset, tokens, base, layout, components, utilities;
+
+@layer components {
+  .ds-link { color: var(--ds-color-text-strong); text-decoration-line: underline; text-decoration-thickness: 0.06em; text-underline-offset: 0.2em; }
+  .ds-link:hover { text-decoration-thickness: var(--ds-border-width-strong); }
+
+  .ds-link[data-variant='arrow'] {
+    font: var(--ds-text-body-md-strong);
+    letter-spacing: var(--ds-text-body-md-strong-letter-spacing);
+    text-decoration-line: none;
+  }
+  .ds-link[data-variant='arrow']:hover { text-decoration-line: underline; }
+
+  .ds-link[data-variant='nav'] {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--ds-space-2xs);
+    font: var(--ds-text-label-md);
+    letter-spacing: var(--ds-text-label-md-letter-spacing);
+    text-decoration-line: none;
+  }
+  .ds-link[data-variant='nav']:hover,
+  .ds-link[data-variant='nav'][aria-current='page'] { text-decoration-line: underline; }
+
+  .ds-link[data-variant='plain'] { color: inherit; text-decoration-line: none; }
+  .ds-link[data-variant='plain']:hover { text-decoration-line: underline; }
+}

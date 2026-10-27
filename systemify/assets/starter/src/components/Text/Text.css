@@ -1,0 +1,19 @@
+@layer reset, tokens, base, layout, components, utilities;
+
+@layer components {
+  .ds-text { font: var(--_text); letter-spacing: var(--_tracking); color: var(--_color); }
+  .ds-text[data-text-style='body-lg'] { --_text: var(--ds-text-body-lg); --_tracking: var(--ds-text-body-lg-letter-spacing); }
+  .ds-text[data-text-style='body-md'] { --_text: var(--ds-text-body-md); --_tracking: var(--ds-text-body-md-letter-spacing); }
+  .ds-text[data-text-style='body-md-strong'] { --_text: var(--ds-text-body-md-strong); --_tracking: var(--ds-text-body-md-strong-letter-spacing); }
+  .ds-text[data-text-style='body-md-italic'] { --_text: var(--ds-text-body-md-italic); --_tracking: var(--ds-text-body-md-italic-letter-spacing); }
+  .ds-text[data-text-style='body-sm'] { --_text: var(--ds-text-body-sm); --_tracking: var(--ds-text-body-sm-letter-spacing); }
+  .ds-text[data-text-style='label-md'] { --_text: var(--ds-text-label-md); --_tracking: var(--ds-text-label-md-letter-spacing); }
+
+  .ds-text[data-tone='strong'] { --_color: var(--ds-color-text-strong); }
+  .ds-text[data-tone='default'] { --_color: var(--ds-color-text-default); }
+  .ds-text[data-tone='muted'] { --_color: var(--ds-color-text-muted); }
+  .ds-text[data-tone='on-inverse'] { --_color: var(--ds-color-text-on-inverse); }
+  .ds-text[data-tone='inherit'] { --_color: inherit; }
+
+  .ds-text[data-align='center'] { text-align: center; }
+}

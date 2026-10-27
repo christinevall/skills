@@ -1,0 +1,47 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { TextStyles, ResponsiveTable } from './TokenDocs';
+
+<Meta title="Foundations/Typography" />
+
+# Typography
+
+**One text style per role**, named **category-size-modifier** (Nathan Curtis; the same
+scheme as Material and Figma's own UI):
+
+| Category | Sizes | Modifiers |
+| --- | --- | --- |
+| `display` | lg | |
+| `heading` | lg, md, sm | |
+| `body` | lg, md, sm | `-strong` (bold), `-italic` |
+| `label` | md, sm | `-strong` (medium) |
+
+So `heading-lg` is the section title , `body-md-strong` the bold meta line.
+New sizes slot in without renaming (`heading-xl`, `body-xs`). In Figma the same names
+with slashes: `heading/lg`, `body/md-strong`.
+
+`heading-lg` is one style, not "heading desktop" and "heading mobile": its size
+changes with the breakpoint inside the token. That is exactly a Figma text style whose
+size, line height and letter spacing are bound to variables with three modes
+(Mobile, Tablet, Desktop).
+
+In code, a component applies the whole style in one line:
+
+```css
+.ds-heading { font: var(--ds-text-heading-lg); letter-spacing: var(--ds-text-heading-lg-letter-spacing); }
+```
+
+and the two generated media queries in `tokens.css` switch the sizes:
+
+```css
+@media (min-width: 50em) { :root { --ds-typography-heading-lg-font-size: var(--ds-font-size-40); } }
+```
+
+The system font stack until the audit names the real typeface. Self-host it (no request to Google) in the weights the source uses.
+All sizes measured on the live site (see `docs/audit.md`); rem, so they grow with
+the reader's font settings. Switch the viewport to see the samples change.
+
+<TextStyles />
+
+## The variables behind the styles (Figma: the Responsive collection)
+
+<ResponsiveTable prefix="semantic.typography." />

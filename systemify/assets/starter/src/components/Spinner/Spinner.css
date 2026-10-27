@@ -1,0 +1,24 @@
+@layer reset, tokens, base, layout, components, utilities;
+
+@layer components {
+  .ds-spinner {
+    display: inline-block;
+    flex: none;
+    inline-size: var(--_size);
+    block-size: var(--_size);
+    border: var(--ds-border-width-strong) solid currentColor;
+    border-inline-end-color: transparent;
+    border-radius: 50%;
+    animation: ds-spin var(--ds-motion-duration-panel) linear infinite;
+  }
+  .ds-spinner[data-size='inherit'] { --_size: 1em; }
+  .ds-spinner[data-size='md'] { --_size: var(--ds-icon-size-md); }
+  .ds-spinner[data-size='lg'] { --_size: var(--ds-icon-size-lg); }
+
+  @keyframes ds-spin { to { rotate: 1turn; } }
+
+  /* The global reduced-motion rule stops the spin; a slow fade still says "busy". */
+  @media (prefers-reduced-motion: reduce) {
+    .ds-spinner { border-inline-end-color: currentColor; opacity: 0.5; }
+  }
+}
